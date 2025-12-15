@@ -7,6 +7,8 @@ public class Proyectile : MonoBehaviour
     public float multiplyDamageBy = 1f;
     public float multiplySpeedBy = 1f;
 
+    public bool isPlayerShot = true;
+
     [Header("Criticals")]
     public float criticalMultiplier = 2f;
 
@@ -24,7 +26,7 @@ public class Proyectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (isPlayerShot && collision.CompareTag("Enemy"))
         {
             EnemyController enemy = collision.GetComponent<EnemyController>();
             if (enemy != null && player != null)
@@ -44,6 +46,13 @@ public class Proyectile : MonoBehaviour
                     Debug.Log($"Critical! Damage: {finalDamage}");
                 }
             }
+
+            Destroy(gameObject);
+        }
+
+        if (isPlayerShot == false && collision.CompareTag("Player"))
+        {
+            collision.GetComponent<PlayerController>()?.TakeDamage(1);
 
             Destroy(gameObject);
         }

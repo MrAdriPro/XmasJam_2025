@@ -13,8 +13,9 @@ public class EnemyController : MonoBehaviour
 
     public float overlapRadius;
     public LayerMask playerMask;
+    public Collider[] playerCol;
 
-    public bool basicEnemy = true;
+    public bool actionActive = false;
 
     private Transform playerTransform;
 
@@ -30,7 +31,6 @@ public class EnemyController : MonoBehaviour
         currentHealth = data.maxHealth;
         moveSpeed = data.moveSpeed;
         damage = data.damage;
-
     }
 
     void Start()
@@ -52,12 +52,19 @@ public class EnemyController : MonoBehaviour
 
         if (data.enemyType == EnemyType.LittleBoy || data.enemyType == EnemyType.Camel && playerTransform != null)
         {
-            Collider[] playerCol = Physics.OverlapSphere(transform.position, overlapRadius, playerMask);
+            playerCol = Physics.OverlapSphere(transform.position, overlapRadius, playerMask);
 
-            print("HOLAA");
+            if (playerCol.Length > 0)
+            {
+                actionActive = true;
+            }
+            else 
+            {
+                Vector3 direction = (playerTransform.position - transform.position).normalized;
+                transform.position += direction * moveSpeed * Time.deltaTime;
 
-            Vector3 direction = (playerTransform.position - transform.position).normalized;
-            transform.position += direction * moveSpeed * Time.deltaTime;
+                actionActive = false;
+            }
         }
     }
 
