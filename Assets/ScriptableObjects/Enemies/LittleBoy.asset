@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LittleBoy
   m_EditorClassIdentifier: 
   enemyType: 2
-  health: 0
-  moveSpeed: 0
-  damage: 0
-  attackRate: 0
+  maxHealth: 4
+  moveSpeed: 2
+  damage: 1
+  attackRate: 2
