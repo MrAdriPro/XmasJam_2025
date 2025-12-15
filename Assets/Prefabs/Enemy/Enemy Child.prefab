@@ -184,7 +184,7 @@ MonoBehaviour:
   moveSpeed: 2
   damage: 1
   experienceDrop: 10
-  data: {fileID: 11400000, guid: 9e211fd177b92654bb98703892459a55, type: 2}
+  data: {fileID: 11400000, guid: 88c3e42fe1ab3eb40b9db0aa5f38447a, type: 2}
   overlapRadius: 7.99
   playerMask:
     serializedVersion: 2
@@ -205,7 +205,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyController: {fileID: 1038662403860922736}
   projectilePrefab: {fileID: 2911460527291713234, guid: fcccba6ef3580ce4ba79a07f9f67d2a4, type: 3}
-  shootInterval: 2
+  enemyStats: {fileID: 11400000, guid: 88c3e42fe1ab3eb40b9db0aa5f38447a, type: 2}
+  attackRate: 2
 --- !u!136 &8562970493262426976
 CapsuleCollider:
   m_ObjectHideFlags: 0
