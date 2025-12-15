@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 157002456212151636}
   - component: {fileID: 5055831892455339850}
   m_Layer: 0
-  m_Name: Sheep
+  m_Name: LittleBoy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,8 +49,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   moveSpeed: 2
+  damage: 1
   experienceDrop: 10
-  enemyStats: {fileID: 11400000, guid: ae0a441c9214c494bbbe040a111cee70, type: 2}
+  data: {fileID: 11400000, guid: 88c3e42fe1ab3eb40b9db0aa5f38447a, type: 2}
+  overlapRadius: 8
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  basicEnemy: 1
 --- !u!136 &157002456212151636
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -211,7 +217,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.81646967, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
