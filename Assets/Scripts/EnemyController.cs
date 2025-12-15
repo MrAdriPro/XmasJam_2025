@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
     private float currentHealth;
     public float moveSpeed = 2f;
     public int experienceDrop = 1;
+    public EnemyStats enemyStats;
 
     private Transform playerTransform; 
 

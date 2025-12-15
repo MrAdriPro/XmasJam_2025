@@ -6,10 +6,8 @@ public class Proyectile : MonoBehaviour
     private PlayerController player;
     public float multiplyDamageBy = 1f;
     public float multiplySpeedBy = 1f;
-    public float multiplyFireRateBy = 1f;
 
     [Header("Criticals")]
-    [Tooltip("Multiplicador aplicado cuando se golpea críticamente")]
     public float criticalMultiplier = 2f;
 
     void Start()
