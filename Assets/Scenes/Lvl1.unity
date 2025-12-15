@@ -432,7 +432,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 114524618708332383, guid: ba9b31587d65e3746867b58dc35644d0, type: 3}
       propertyPath: ammoAmount
-      value: 10
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 114524618708332383, guid: ba9b31587d65e3746867b58dc35644d0, type: 3}
       propertyPath: specialIndex
@@ -440,7 +440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114524618708332383, guid: ba9b31587d65e3746867b58dc35644d0, type: 3}
       propertyPath: multiplyFireRateBy
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 578067474101312862, guid: ba9b31587d65e3746867b58dc35644d0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -541,6 +541,10 @@ MonoBehaviour:
     prefab: {fileID: 5237048917811981342, guid: 38c67f66f567d1440b2dfd066416d63c, type: 3}
   - type: 3
     prefab: {fileID: 5237048917811981342, guid: bde62ed3312f8e541a620e6433c97081, type: 3}
+  autoIncreaseDifficulty: 1
+  timePerStage: 5
+  initialDelay: 10
+  perEnemyDelay: 0.2
 --- !u!1 &631213773
 GameObject:
   m_ObjectHideFlags: 0

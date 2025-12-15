@@ -16,37 +16,73 @@ MonoBehaviour:
   profiles:
   - type: 0
     activeSpawnPoints: 1
-    spawnInterval: 5
+    spawnInterval: 4
     spawnPerWave: 1
-    allowedEnemyTypes: 00000000
+    enemyChances:
+    - type: 0
+      weight: 100
     continuous: 0
   - type: 1
     activeSpawnPoints: 2
-    spawnInterval: 4
+    spawnInterval: 3
     spawnPerWave: 1
-    allowedEnemyTypes: 0000000001000000
+    enemyChances:
+    - type: 0
+      weight: 50
+    - type: 1
+      weight: 50
     continuous: 0
   - type: 2
     activeSpawnPoints: 3
-    spawnInterval: 3
-    spawnPerWave: 2
-    allowedEnemyTypes: 000000000100000002000000
+    spawnInterval: 2
+    spawnPerWave: 1
+    enemyChances:
+    - type: 0
+      weight: 20
+    - type: 1
+      weight: 20
+    - type: 2
+      weight: 60
     continuous: 0
   - type: 3
     activeSpawnPoints: 4
-    spawnInterval: 2
-    spawnPerWave: 3
-    allowedEnemyTypes: 00000000010000000200000003000000
+    spawnInterval: 1.5
+    spawnPerWave: 1
+    enemyChances:
+    - type: 0
+      weight: 10
+    - type: 1
+      weight: 20
+    - type: 2
+      weight: 40
+    - type: 3
+      weight: 30
     continuous: 0
   - type: 4
     activeSpawnPoints: 5
-    spawnInterval: 1.5
-    spawnPerWave: 4
-    allowedEnemyTypes: 00000000010000000200000003000000
+    spawnInterval: 1
+    spawnPerWave: 1
+    enemyChances:
+    - type: 0
+      weight: 10
+    - type: 1
+      weight: 20
+    - type: 2
+      weight: 30
+    - type: 3
+      weight: 40
     continuous: 0
   - type: 5
     activeSpawnPoints: 5
     spawnInterval: 0.7
-    spawnPerWave: 6
-    allowedEnemyTypes: 00000000010000000200000003000000
+    spawnPerWave: 1
+    enemyChances:
+    - type: 0
+      weight: 10
+    - type: 1
+      weight: 30
+    - type: 2
+      weight: 30
+    - type: 3
+      weight: 30
     continuous: 1

@@ -25,17 +25,36 @@ public class SpawnEnemiesManager : MonoBehaviour
 
 	private Coroutine spawnRoutine;
 	private Coroutine updateActiveRoutine;
+	private Coroutine progressionRoutine;
+
+	[Header("Difficulty progression")]
+	[Tooltip("Si está en true, la dificultad irá subiendo automáticamente con el tiempo")]
+	public bool autoIncreaseDifficulty = true;
+	[Tooltip("Segundos que tarda en avanzar a la siguiente dificultad (por etapa)")]
+	public float timePerStage = 60f;
+	[Tooltip("Segundos de espera antes de empezar a subir la dificultad")]
+	public float initialDelay = 10f;
+
+	private DifficultyType currentDifficulty;
+
+	[Header("Spawn timing")]
+	[Tooltip("Retraso (segundos) entre cada enemigo cuando se spawnean varios en el mismo punto para evitar solapamiento")]
+	public float perEnemyDelay = 0.3f;
 
 	private void Start()
 	{
-		if (difficultySO == null)
-		{
-			Debug.LogWarning("SpawnEnemiesManager: difficultySO no asignado. Usando defaults.");
-		}
+		
+
+
+		currentDifficulty = (difficultySO != null) ? difficultySO.current : DifficultyType.Easy;
 
 		UpdateActiveSpawnPoints();
 		spawnRoutine = StartCoroutine(SpawnLoop());
 		updateActiveRoutine = StartCoroutine(UpdateActiveSpawnPointsLoop());
+		if (autoIncreaseDifficulty)
+		{
+			progressionRoutine = StartCoroutine(DifficultyProgressionLoop());
+		}
 	}
 
 	private void OnValidate()
@@ -59,7 +78,7 @@ public class SpawnEnemiesManager : MonoBehaviour
 			return;
 		}
 
-		var profile = difficultySO.GetProfile(difficultySO.current);
+		var profile = difficultySO.GetProfile(currentDifficulty);
 		int n = Mathf.Clamp(profile.activeSpawnPoints, 1, spawnPoints.Count);
 
 		activeSpawnPoints = spawnPoints.OrderBy(sp => Vector3.Distance(sp.position, player.position))
@@ -77,7 +96,7 @@ public class SpawnEnemiesManager : MonoBehaviour
 				continue;
 			}
 
-			var profile = difficultySO.GetProfile(difficultySO.current);
+			var profile = difficultySO.GetProfile(currentDifficulty);
 
 			if (activeSpawnPoints == null || activeSpawnPoints.Count == 0)
 			{
@@ -93,6 +112,9 @@ public class SpawnEnemiesManager : MonoBehaviour
 				for (int j = 0; j < Mathf.Max(1, profile.spawnPerWave); j++)
 				{
 					SpawnAt(sp, profile);
+					float delay = Mathf.Max(0.01f, perEnemyDelay);
+					if (profile.continuous) delay *= 0.8f;
+					yield return new WaitForSeconds(delay);
 				}
 
 				float waitBetweenPoints = profile.spawnInterval / Mathf.Max(1, activeSpawnPoints.Count);
@@ -112,15 +134,42 @@ public class SpawnEnemiesManager : MonoBehaviour
 		}
 	}
 
+	private IEnumerator DifficultyProgressionLoop()
+	{
+		yield return new WaitForSeconds(initialDelay);
+
+		int maxIndex = System.Enum.GetValues(typeof(DifficultyType)).Length - 1;
+
+		while (autoIncreaseDifficulty)
+		{
+			yield return new WaitForSeconds(Mathf.Max(1f, timePerStage));
+
+			int currentIndex = (int)currentDifficulty;
+			if (currentIndex < maxIndex)
+			{
+				currentIndex++;
+				currentDifficulty = (DifficultyType)currentIndex;
+				Debug.Log($"Difficulty increased to: {currentDifficulty}");
+				UpdateActiveSpawnPoints();
+			}
+			else
+			{
+				Debug.Log("DifficultyProgression: reached max difficulty.");
+				yield break;
+			}
+		}
+	}
+
 	private void SpawnAt(Transform spawnPoint, Difficulty.DifficultyProfile profile)
 	{
-		if (profile.allowedEnemyTypes == null || profile.allowedEnemyTypes.Length == 0)
+		if (profile == null)
 		{
-			Debug.LogWarning("SpawnEnemiesManager: no hay tipos de enemigos permitidos para esta dificultad.");
+			Debug.LogWarning("SpawnEnemiesManager: profile es null.");
 			return;
 		}
 
-		var chosenType = profile.allowedEnemyTypes[Random.Range(0, profile.allowedEnemyTypes.Length)];
+		// elegir por pesos si hay enemyChances definidos
+		EnemyType chosenType = profile.GetRandomEnemyType();
 
 		var entry = enemyPrefabs.FirstOrDefault(e => e.type == chosenType);
 		if (entry.prefab == null)
@@ -132,7 +181,7 @@ public class SpawnEnemiesManager : MonoBehaviour
 		Instantiate(entry.prefab, spawnPoint.position, spawnPoint.rotation);
 	}
 
-	private void OnDrawGizmosSelected()
+	private void OnDrawGizmos()
 	{
 		if (spawnPoints != null)
 		{
