@@ -184,7 +184,7 @@ public class PlayerController : MonoBehaviour
 
         currentSpecialIndex = index;
         bulletFireRate = fireRate;
-        playerMelee.MeleeCooldownRate = meleeRate;
+        //playerMelee.MeleeCooldownRate = meleeRate;
         Debug.Log($"Picked up special projectile index {index} (+{ammoAmount} ammo). Now active (ammo: {especialAmmo[index]}).");
 
     }
