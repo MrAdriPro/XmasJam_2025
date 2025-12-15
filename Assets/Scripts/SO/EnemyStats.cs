@@ -14,4 +14,5 @@ public enum EnemyType
     Sheep,
     Cow,
     LittleBoy,
+    Camel
 }
