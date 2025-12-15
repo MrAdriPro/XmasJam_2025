@@ -981,6 +981,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1038662403860922736, guid: 12d042dac3c265743814c30ae8f3fbf8, type: 3}
+      propertyPath: overlapRadius
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4915086785492860565, guid: 12d042dac3c265743814c30ae8f3fbf8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
