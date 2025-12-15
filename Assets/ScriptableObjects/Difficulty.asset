@@ -28,9 +28,9 @@ MonoBehaviour:
     spawnPerWave: 1
     enemyChances:
     - type: 0
-      weight: 50
+      weight: 80
     - type: 1
-      weight: 50
+      weight: 20
     continuous: 0
   - type: 2
     activeSpawnPoints: 3

@@ -542,7 +542,7 @@ MonoBehaviour:
   - type: 3
     prefab: {fileID: 5237048917811981342, guid: bde62ed3312f8e541a620e6433c97081, type: 3}
   autoIncreaseDifficulty: 1
-  timePerStage: 5
+  timePerStage: 10
   initialDelay: 10
   perEnemyDelay: 0.2
 --- !u!1 &631213773
