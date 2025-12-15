@@ -4,14 +4,15 @@ using UnityEngine;
 public class EnemyStats : ScriptableObject
 {
     public EnemyType enemyType;
-    public float health;
+    public float maxHealth;
     public float moveSpeed;
     public float damage;
     public float attackRate;
 }
-public enum EnemyType
+public enum EnemyType : byte
 {
     Sheep,
     Cow,
     LittleBoy,
+    Camel,
 }

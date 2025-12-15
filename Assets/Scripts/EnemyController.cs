@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -6,14 +7,34 @@ public class EnemyController : MonoBehaviour
     public int maxHealth = 3;
     private float currentHealth;
     public float moveSpeed = 2f;
+    public float damage = 1f;
     public int experienceDrop = 1;
-    public EnemyStats enemyStats;
+    public EnemyStats data;
 
-    private Transform playerTransform; 
+    public float overlapRadius;
+    public LayerMask playerMask;
+
+    public bool basicEnemy = true;
+
+    private Transform playerTransform;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+
+        Gizmos.DrawWireSphere(transform.position, overlapRadius);
+    }
+
+    private void Awake()
+    {
+        currentHealth = data.maxHealth;
+        moveSpeed = data.moveSpeed;
+        damage = data.damage;
+
+    }
 
     void Start()
     {
-        currentHealth = maxHealth;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -23,11 +44,20 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if (playerTransform != null)
+        if (data.enemyType == EnemyType.Sheep || data.enemyType == EnemyType.Cow && playerTransform != null)
         {
             Vector3 direction = (playerTransform.position - transform.position).normalized;
             transform.position += direction * moveSpeed * Time.deltaTime;
+        }
 
+        if (data.enemyType == EnemyType.LittleBoy || data.enemyType == EnemyType.Camel && playerTransform != null)
+        {
+            Collider[] playerCol = Physics.OverlapSphere(transform.position, overlapRadius, playerMask);
+
+            print("HOLAA");
+
+            Vector3 direction = (playerTransform.position - transform.position).normalized;
+            transform.position += direction * moveSpeed * Time.deltaTime;
         }
     }
 
