@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Linq;
@@ -37,15 +38,23 @@ public class SpawnEnemiesManager : MonoBehaviour
 
 	private DifficultyType currentDifficulty;
 
+	// Valores para exponer progreso a la UI
+	public DifficultyType CurrentDifficulty => currentDifficulty;
+	public float CurrentStageElapsed { get; private set; } = 0f;
+	public float CurrentStageDuration => Mathf.Max(1f, timePerStage);
+
 	[Header("Spawn timing")]
 	[Tooltip("Retraso (segundos) entre cada enemigo cuando se spawnean varios en el mismo punto para evitar solapamiento")]
 	public float perEnemyDelay = 0.3f;
 
+	[Header("Spawn limits")]
+	[Tooltip("Número máximo de enemigos permitidos en la escena. 0 = sin límite")]
+	public int maxEnemies = 0;
+	[Tooltip("Etiqueta (Tag) usada para identificar enemigos en la escena. Dejar vacío para desactivar el conteo por tag")]
+	public string enemyTag = "Enemy";
+
 	private void Start()
 	{
-		
-
-
 		currentDifficulty = (difficultySO != null) ? difficultySO.current : DifficultyType.Easy;
 
 		UpdateActiveSpawnPoints();
@@ -54,6 +63,11 @@ public class SpawnEnemiesManager : MonoBehaviour
 		if (autoIncreaseDifficulty)
 		{
 			progressionRoutine = StartCoroutine(DifficultyProgressionLoop());
+		}
+		else
+		{
+			// Si no hay progresión automática, fijar elapsed a duración (para que barra UI muestre posición fija)
+			CurrentStageElapsed = CurrentStageDuration;
 		}
 	}
 
@@ -67,7 +81,7 @@ public class SpawnEnemiesManager : MonoBehaviour
 		while (true)
 		{
 			UpdateActiveSpawnPoints();
-			yield return new WaitForSeconds(1f); 
+			yield return new WaitForSeconds(1f);
 		}
 	}
 
@@ -140,9 +154,18 @@ public class SpawnEnemiesManager : MonoBehaviour
 
 		int maxIndex = System.Enum.GetValues(typeof(DifficultyType)).Length - 1;
 
+		float stageStartTime = Time.time;
+		CurrentStageElapsed = 0f;
+
 		while (autoIncreaseDifficulty)
 		{
-			yield return new WaitForSeconds(Mathf.Max(1f, timePerStage));
+			while (CurrentStageElapsed < timePerStage)
+			{
+				CurrentStageElapsed = Time.time - stageStartTime;
+				yield return null;
+			}
+
+			CurrentStageElapsed = timePerStage;
 
 			int currentIndex = (int)currentDifficulty;
 			if (currentIndex < maxIndex)
@@ -151,10 +174,14 @@ public class SpawnEnemiesManager : MonoBehaviour
 				currentDifficulty = (DifficultyType)currentIndex;
 				Debug.Log($"Difficulty increased to: {currentDifficulty}");
 				UpdateActiveSpawnPoints();
+
+				stageStartTime = Time.time;
+				CurrentStageElapsed = 0f;
 			}
 			else
 			{
 				Debug.Log("DifficultyProgression: reached max difficulty.");
+				CurrentStageElapsed = timePerStage;
 				yield break;
 			}
 		}
@@ -168,7 +195,15 @@ public class SpawnEnemiesManager : MonoBehaviour
 			return;
 		}
 
-		// elegir por pesos si hay enemyChances definidos
+		if (maxEnemies > 0 && !string.IsNullOrEmpty(enemyTag))
+		{
+			int current = GetCurrentEnemyCount();
+			if (current >= maxEnemies)
+			{
+				return;
+			}
+		}
+
 		EnemyType chosenType = profile.GetRandomEnemyType();
 
 		var entry = enemyPrefabs.FirstOrDefault(e => e.type == chosenType);
@@ -179,6 +214,46 @@ public class SpawnEnemiesManager : MonoBehaviour
 		}
 
 		Instantiate(entry.prefab, spawnPoint.position, spawnPoint.rotation);
+	}
+
+
+	private int GetCurrentEnemyCount()
+	{
+		if (maxEnemies <= 0 || string.IsNullOrEmpty(enemyTag))
+		{
+			return 0;
+		}
+
+		try
+		{
+			return GameObject.FindGameObjectsWithTag(enemyTag).Length;
+		}
+		catch
+		{
+			return 0;
+		}
+	}
+
+	/// <summary>
+	/// Devuelve el progreso normalizado entre 0 y 1 a través de todo el rango de dificultades.
+	/// Ejemplo: Easy (index 0) + mitad del tiempo de stage -> 0.5/(maxIndex)
+	/// </summary>
+	public float GetProgressNormalized()
+	{
+		int maxIndex = System.Enum.GetValues(typeof(DifficultyType)).Length - 1;
+		if (maxIndex <= 0) return 0f;
+
+		float index = (int)currentDifficulty;
+		float stageProgress = Mathf.Clamp01(CurrentStageElapsed / CurrentStageDuration);
+
+		// Si ya estamos en la última dificultad, devolver 1
+		if ((int)currentDifficulty >= maxIndex)
+		{
+			return 1f;
+		}
+
+		float total = (index + stageProgress) / (float)maxIndex;
+		return Mathf.Clamp01(total);
 	}
 
 	private void OnDrawGizmos()
