@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Camel
   m_EditorClassIdentifier: 
   enemyType: 3
-  maxHealth: 4
+  maxHealth: 6
   moveSpeed: 2
   damage: 1
   attackRate: 2

@@ -7,6 +7,8 @@ public class ExplotionController : MonoBehaviour
     public float radius = 1.75f;
 
     private bool exploded;
+    public bool playerAttack;
+
     private LayerMask targetMask;
 
 
@@ -42,11 +44,14 @@ public class ExplotionController : MonoBehaviour
         {
             foreach (Collider target in explodeTargets)
             {
-                if (target.gameObject.CompareTag("Player")) 
+                if (playerAttack == false)
                 {
-                    PlayerController player = target.GetComponent<PlayerController>();
+                    if (target.gameObject.CompareTag("Player"))
+                    {
+                        PlayerController player = target.GetComponent<PlayerController>();
 
-                    player.TakeDamage(damage, transform.position);
+                        player.TakeDamage(damage, transform.position);
+                    }
                 }
 
                 if (target.gameObject.CompareTag("Enemy"))
