@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private float originalFireRate;
     public float playerMoveSpeed = 5f;
     public float bulletDamage = 1f;
-    public float maxHealth = 3;
+    public float currentHealth = 3;
     public float bulletCriticalChance = 1f;
     public float bulletSpeed = 10f;
     public float meleeDamage = 1f;
@@ -200,11 +200,11 @@ public class PlayerController : MonoBehaviour
     {
         if (inmune)
             return;
-        maxHealth -= amount;
+        currentHealth -= amount;
         Inmunerable();
         //now push to other direction that has been hit from
        
-        if (maxHealth <= 0)
+        if (currentHealth <= 0)
         {
             Debug.Log("Player has died.");
         }
