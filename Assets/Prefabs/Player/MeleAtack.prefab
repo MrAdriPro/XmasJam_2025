@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 154d4384a932f6b42b78b6f9e7987779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 344afa639b52fce4883e2f366b4bbcd8, type: 2}
   duration: 0.2
-  damage: 4
   radius: 1.75
   playerAttack: 1

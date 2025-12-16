@@ -33,7 +33,7 @@ public class Proyectile : MonoBehaviour
             {
                 float baseDamage = player.bulletDamage * multiplyDamageBy;
 
-                bool isCritical = Random.value < Mathf.Clamp01(player.bulletCriticalChance);
+                bool isCritical = Random.value < Mathf.Clamp01(player.criticalChance);
 
                 float finalDamageFloat = baseDamage * (isCritical ? criticalMultiplier : 1f);
 

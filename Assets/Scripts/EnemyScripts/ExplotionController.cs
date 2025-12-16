@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class ExplotionController : MonoBehaviour
 {
+    private PlayerController data;
     public float duration = 0.5f;
-    public int damage = 4;
+    private int damage = 4;
     public float radius = 1.75f;
 
     private bool exploded;
@@ -11,7 +12,7 @@ public class ExplotionController : MonoBehaviour
 
     private LayerMask targetMask;
 
-
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -21,6 +22,13 @@ public class ExplotionController : MonoBehaviour
 
     private void Awake()
     {
+        if (playerAttack)
+        {
+           PlayerController playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
+           damage = playerController.meleeDamage;
+        }
+        
         targetMask = LayerMask.GetMask("Player") | LayerMask.GetMask("Enemy");
     }
 
@@ -53,9 +61,11 @@ public class ExplotionController : MonoBehaviour
                         player.TakeDamage(damage, transform.position);
                     }
                 }
-
+                
+                
                 if (target.gameObject.CompareTag("Enemy"))
                 {
+                    
                     EnemyController enemy = target.GetComponent<EnemyController>();
 
                     enemy.TakeDamage(damage);
