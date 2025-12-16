@@ -3,9 +3,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
-    public PlayerMelee playerMelee;
+    [SerializeField] private GameObject playerMelee;
     [SerializeField] private GameObject body;
     [SerializeField] private GameObject melePivot;
+    [SerializeField] private Transform melePoint;
 
     [Header("MovementConfiguration")]
     public float inputDeadZone = 0.1f;
@@ -83,6 +84,7 @@ public class PlayerController : MonoBehaviour
         ApplyMovement();
         HandleAiming();
         HandleShooting();
+        HandleMele();
         FlipOrientation();
     }
 
@@ -166,6 +168,27 @@ public class PlayerController : MonoBehaviour
             Shoot();
         }
     }
+
+    private void HandleMele()
+    {
+        if (Input.GetButton("Fire2") && Time.time > nextFireTime)
+        {
+            nextFireTime = Time.time + 1f / bulletFireRate * multiplyFireRateBy;
+            Mele();
+        }
+    }
+
+    private void Mele() 
+    {
+        if (playerMelee == null)
+        {
+            Debug.LogWarning("No mele prefab assigned (prefabToSpawn is null).");
+            return;
+        }
+
+        Instantiate(playerMelee, melePoint.position, Quaternion.identity);
+    }
+
     private void FlipOrientation()
     {
         if(movementInput.x < 0)
