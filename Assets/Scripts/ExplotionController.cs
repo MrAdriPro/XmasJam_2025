@@ -1,0 +1,63 @@
+using UnityEngine;
+
+public class ExplotionController : MonoBehaviour
+{
+    public float duration = 0.5f;
+    public int damage = 4;
+    public float radius = 1.75f;
+
+    private bool exploded;
+    private LayerMask targetMask;
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
+    private void Awake()
+    {
+        targetMask = LayerMask.GetMask("Player") | LayerMask.GetMask("Enemy");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Explotion Duration
+        duration -= Time.deltaTime;
+
+        if (duration <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
+
+        // Explotion Damage 
+
+        Collider[] explodeTargets = Physics.OverlapSphere(transform.position, radius, targetMask);
+
+        if(exploded == false) 
+        {
+            foreach (Collider target in explodeTargets)
+            {
+                if (target.gameObject.CompareTag("Player")) 
+                {
+                    PlayerController player = target.GetComponent<PlayerController>();
+
+                    player.TakeDamage(damage);
+                }
+
+                if (target.gameObject.CompareTag("Enemy"))
+                {
+                    EnemyController enemy = target.GetComponent<EnemyController>();
+
+                    enemy.TakeDamage(damage);
+                }
+            }
+
+            exploded = true;
+        }
+    }
+}
