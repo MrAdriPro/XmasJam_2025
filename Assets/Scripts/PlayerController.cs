@@ -4,10 +4,12 @@ public class PlayerController : MonoBehaviour
 {
     [Header("References")]
     public PlayerMelee playerMelee;
+    [SerializeField] private GameObject body;
+    [SerializeField] private GameObject melePivot;
+
     [Header("MovementConfiguration")]
     public float inputDeadZone = 0.1f;
     private Vector3 movementInput;
-    public GameObject model;
 
     [Header("Combat Configuration")]
     public Transform shootingPivot;
@@ -151,6 +153,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 point = ray.GetPoint(rayDistance);
             shootingPivot.LookAt(point);
+            melePivot.transform.LookAt(point);
             shootingPivot.localEulerAngles = new Vector3(0, shootingPivot.localEulerAngles.y, 0);
         }
     }
@@ -167,11 +170,11 @@ public class PlayerController : MonoBehaviour
     {
         if(movementInput.x < 0)
         {
-            model.transform.localScale = new Vector3(-1, 1, 1);
+            body.transform.localScale = new Vector3(1f, 1f, 1f);
         }
         else if (movementInput.x > 0)
         {
-            model.transform.localScale = new Vector3(1, 1, 1);
+            body.transform.localScale = new Vector3(-1f, 1f, 1f);
         }
     }
 
