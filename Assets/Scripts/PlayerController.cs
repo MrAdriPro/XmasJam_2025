@@ -13,9 +13,10 @@ public class PlayerController : MonoBehaviour
     public Transform shootingPivot;
     public GameObject projectilePrefab;           
     public GameObject[] especialProjectiles;      
-    [Tooltip("Munición para cada proyectil especial. Tiene que corresponder por índice con 'especialProjectiles'")]
+    public bool inmune = false;
+    public float inmuneDuration = 2f;
+    [Tooltip("Especial Ammo")]
     public int[] especialAmmo;
-
     private int currentSpecialIndex = 0; 
     private float nextFireTime;
 
@@ -25,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private float originalFireRate;
     public float playerMoveSpeed = 5f;
     public float bulletDamage = 1f;
-    public int maxHealth = 3;
+    public float maxHealth = 3;
     public float bulletCriticalChance = 1f;
     public float bulletSpeed = 10f;
     public float meleeDamage = 1f;
@@ -73,6 +74,12 @@ public class PlayerController : MonoBehaviour
         ApplyMovement();
         HandleAiming();
         HandleShooting();
+    }
+    private void Inmunerable()
+    {
+        inmune = true;
+        Invoke("ResetInmune", inmuneDuration);
+        inmune = false;
     }
 
     private void HandleMovementInput()
@@ -189,9 +196,14 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
+        if (inmune)
+            return;
         maxHealth -= amount;
+        Inmunerable();
+        //now push to other direction that has been hit from
+       
         if (maxHealth <= 0)
         {
             Debug.Log("Player has died.");

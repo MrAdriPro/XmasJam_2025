@@ -20,6 +20,7 @@ public class EnemyController : MonoBehaviour
     public bool actionActive = false;
 
     private Transform playerTransform;
+    private PlayerController player;
 
     private void OnDrawGizmos()
     {
@@ -33,6 +34,7 @@ public class EnemyController : MonoBehaviour
         currentHealth = data.maxHealth;
         moveSpeed = data.moveSpeed;
         damage = data.damage;
+        player = FindFirstObjectByType<PlayerController>();
     }
 
     void Start()
@@ -79,6 +81,13 @@ public class EnemyController : MonoBehaviour
             Die();
         }
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Attack();
+        }
+    }
 
     void Die()
     {
@@ -90,6 +99,10 @@ public class EnemyController : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+    private void Attack()
+    {
+        player.TakeDamage(data.damage);
     }
 
 }
