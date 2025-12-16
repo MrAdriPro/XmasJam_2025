@@ -336,10 +336,10 @@ MonoBehaviour:
   highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   labelYOffset: 18
   pointerSmoothSpeed: 12
-  labelFontSize: 14
+  labelFontSize: 13
   tmpFontSizeMin: 10
   tmpFontSizeMax: 28
-  labelWidthPadding: 0.9
+  labelWidthPadding: 5
 --- !u!1 &215799212
 GameObject:
   m_ObjectHideFlags: 0
