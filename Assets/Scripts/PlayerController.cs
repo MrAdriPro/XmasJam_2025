@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,7 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject body;
     [SerializeField] private GameObject melePivot;
     [SerializeField] private Transform melePoint;
-
+    [SerializeField] private Inventory inventoryScript;
+    
     [Header("MovementConfiguration")]
     public float inputDeadZone = 0.1f;
     private Vector3 movementInput;
@@ -22,30 +24,49 @@ public class PlayerController : MonoBehaviour
     public int[] especialAmmo;
     private int currentSpecialIndex = 0; 
     private float nextFireTime;
-
+    private float nextMeleTime;
+    
+    
     [Header("Stats")]
-    public float bulletFireRate = 0.5f;
+    [SerializeField] private PlayerStats data;
     public float multiplyFireRateBy = 1f;
     private float originalFireRate;
-    public float playerMoveSpeed = 5f;
     public float bulletDamage = 1f;
-    public float currentHealth = 3;
-    public float bulletCriticalChance = 1f;
     public float bulletSpeed = 10f;
-    public float meleeDamage = 1f;
     public float meleemultiplyMeleeRateBy = 1f;
-
+    public float meleFireRate = 0.5f;
+    
+    // Modificable Stats
+    [System.NonSerialized] public float playerMoveSpeed = 5f;
+    [System.NonSerialized] public int meleeDamage = 1;
+    [System.NonSerialized] public float bulletFireRate = 0.5f;
+    [System.NonSerialized] public float currentHealth = 3;
+    [System.NonSerialized] public float criticalChance = 1f;
+    
+    
     [Header("Knockback")]
     public float knockbackForce = 6f;
     public float knockbackDuration = 0.25f;
     public bool disableInputDuringKnockback = true;
     private Vector3 knockbackVelocity = Vector3.zero;
     private float knockbackTimeRemaining = 0f;
-
+    
     void Start()
     {
+        // Set "PlayerStats SO" variables
+        currentHealth = data.health;
+        playerMoveSpeed = data.moveSpeed;
+        meleeDamage = data.meleDamage;
+        
+        //AdriChupala
+        multiplyFireRateBy = data.attackSpeed;
+        
+        criticalChance = data.critRate;
+        
         originalFireRate = bulletFireRate;
         nextFireTime = 0f;
+        nextMeleTime = 0f;
+        
         EnsureAmmoArrayMatchesProjectiles();
         if (especialProjectiles == null || especialProjectiles.Length == 0)
             currentSpecialIndex = -1; 
@@ -162,7 +183,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleShooting()
     {
-        if (Input.GetButton("Fire1") && Time.time > nextFireTime)
+        if (Input.GetButton("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
         {
             nextFireTime = Time.time + 1f / bulletFireRate * multiplyFireRateBy;
             Shoot();
@@ -171,9 +192,9 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMele()
     {
-        if (Input.GetButton("Fire2") && Time.time > nextFireTime)
+        if (Input.GetButton("Fire2") && Time.time > nextMeleTime && Time.time > nextFireTime)
         {
-            nextFireTime = Time.time + 1f / bulletFireRate * multiplyFireRateBy;
+            nextMeleTime = Time.time + 1f / meleFireRate;
             Mele();
         }
     }
@@ -254,7 +275,7 @@ public class PlayerController : MonoBehaviour
     {
         if (especialProjectiles == null || index < 0 || index >= especialProjectiles.Length)
         {
-            Debug.LogWarning("PickupSpecialAmmo: índice inválido o especialProjectiles no configurado.");
+            Debug.LogWarning("PickupSpecialAmmo: ï¿½ndice invï¿½lido o especialProjectiles no configurado.");
             return;
         }
 
@@ -282,7 +303,7 @@ public class PlayerController : MonoBehaviour
             dir.y = 0f;
             if (dir.sqrMagnitude < 0.0001f)
             {
-                // si la fuente coincide, empujar hacia atrás del jugador
+                // si la fuente coincide, empujar hacia atrï¿½s del jugador
                 dir = -transform.forward;
             }
             Vector3 knockDir = dir.normalized;
@@ -293,7 +314,19 @@ public class PlayerController : MonoBehaviour
         if (currentHealth <= 0)
         {
             Debug.Log("Player has died.");
-            // Aquí puedes llamar al gestor de nivel / muerte
+            // Aquï¿½ puedes llamar al gestor de nivel / muerte
         }
+    }
+
+    public void RefreshStats()
+    {
+        playerMoveSpeed = data.moveSpeed + inventoryScript._upgrades["speed"];
+        meleeDamage = data.meleDamage + inventoryScript._upgrades["damage"];
+        
+        //AdriChupala
+        multiplyFireRateBy = data.attackSpeed + inventoryScript._upgrades["attackSpeed"];
+        
+        
+        criticalChance = data.critRate + inventoryScript._upgrades["critChance"];
     }
 }

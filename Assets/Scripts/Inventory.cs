@@ -3,17 +3,29 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    Dictionary<string, int> _inventory = new Dictionary<string, int>();
+    [SerializeField] PlayerController player;
+    public Dictionary<string, int> _upgrades = new Dictionary<string, int>();
 
     private void Start()
     {
-        _inventory.Add("perla", 2);
+        _upgrades.Add("health", 0);
+        _upgrades.Add("attackSpeed", 0);
+        _upgrades.Add("damage", 0);
+        _upgrades.Add("speed", 0);
+        _upgrades.Add("critChance", 0);
+    }
 
-        _inventory["perla"] = 4;
-
-        if(_inventory["perla"] == 4) 
+    public void AddUpgrade(string stat, int amount)
+    {
+        if (stat == "damage" || stat == "attackSpeed" || stat == "speed" || stat == "critChance")
         {
-            print("hola perla");
+            _upgrades[stat] += amount;
+            player.RefreshStats();
+        }
+
+        if (stat == "health")
+        {
+            player.currentHealth += amount;
         }
     }
 }
