@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7991204448652424117}
   - component: {fileID: 157002456212151636}
   - component: {fileID: 5055831892455339850}
-  m_Layer: 0
-  m_Name: Enemy
+  m_Layer: 6
+  m_Name: Camel
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,8 +51,9 @@ MonoBehaviour:
   moveSpeed: 2
   damage: 1
   experienceDrop: 10
-  data: {fileID: 11400000, guid: ac0dcb15668122f47b2072f7d6621a9c, type: 2}
-  overlapRadius: 0
+  data: {fileID: 11400000, guid: 22d284e27d56b234f8e06502d50028a8, type: 2}
+  explotion: {fileID: 8786811043250572203, guid: 5f768c11688aee44bafab3a8d148c1b0, type: 3}
+  overlapRadius: 8
   playerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -218,7 +219,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.6426325, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

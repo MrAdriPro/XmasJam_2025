@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour
     public int experienceDrop = 1;
     public EnemyStats data;
 
+    [SerializeField] GameObject explotion;
+
     public float overlapRadius;
     public LayerMask playerMask;
     public Collider[] playerCol;
@@ -82,6 +84,10 @@ public class EnemyController : MonoBehaviour
     {
         LevelManager.Instance.AddExperience(experienceDrop);
 
+        if (data.enemyType == EnemyType.Cow) 
+        {
+            Instantiate(explotion, transform.position + new Vector3(0f,0.10f,0f), Quaternion.identity);
+        }
 
         Destroy(gameObject);
     }

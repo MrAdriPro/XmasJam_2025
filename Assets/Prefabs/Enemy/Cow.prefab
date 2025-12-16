@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7991204448652424117}
   - component: {fileID: 157002456212151636}
   - component: {fileID: 5055831892455339850}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cow
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -52,11 +52,13 @@ MonoBehaviour:
   damage: 1
   experienceDrop: 10
   data: {fileID: 11400000, guid: d66658a5d700e7e449391c9008661add, type: 2}
+  explotion: {fileID: 8786811043250572203, guid: 5f768c11688aee44bafab3a8d148c1b0, type: 3}
   overlapRadius: 0
   playerMask:
     serializedVersion: 2
-    m_Bits: 64
-  basicEnemy: 1
+    m_Bits: 8
+  playerCol: []
+  actionActive: 0
 --- !u!136 &157002456212151636
 CapsuleCollider:
   m_ObjectHideFlags: 0

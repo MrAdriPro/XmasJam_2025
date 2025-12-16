@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 7807801510278895891}
   - component: {fileID: 8562970493262426976}
   - component: {fileID: 3638787968946512701}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy Child
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -185,6 +185,7 @@ MonoBehaviour:
   damage: 1
   experienceDrop: 10
   data: {fileID: 11400000, guid: 9e211fd177b92654bb98703892459a55, type: 2}
+  explotion: {fileID: 8786811043250572203, guid: 5f768c11688aee44bafab3a8d148c1b0, type: 3}
   overlapRadius: 7.99
   playerMask:
     serializedVersion: 2
@@ -205,7 +206,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyController: {fileID: 1038662403860922736}
   projectilePrefab: {fileID: 2911460527291713234, guid: fcccba6ef3580ce4ba79a07f9f67d2a4, type: 3}
-  shootInterval: 2
+  enemyStats: {fileID: 11400000, guid: 9e211fd177b92654bb98703892459a55, type: 2}
+  attackRate: 2
 --- !u!136 &8562970493262426976
 CapsuleCollider:
   m_ObjectHideFlags: 0
