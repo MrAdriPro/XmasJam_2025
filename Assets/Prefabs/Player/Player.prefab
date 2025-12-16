@@ -73,6 +73,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4186152370962442421}
   - component: {fileID: 7009431689264308398}
+  - component: {fileID: 8796000580681708361}
+  - component: {fileID: 9208705671763814212}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -139,7 +141,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: -274414405, guid: 757563b6d36609d4cb51871ef4da1a5f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -150,6 +152,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8796000580681708361
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6794013280403027930}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9acd9d5595782f148a8aa69a6b32b265, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9208705671763814212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6794013280403027930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da26ea716a190054d8c23977cc03ec0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7019798656899316210
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4413575275293724089
 Transform:
   m_ObjectHideFlags: 0
@@ -176,7 +212,7 @@ Transform:
   m_GameObject: {fileID: 7019798656899316210}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.19, z: 0.716}
+  m_LocalPosition: {x: 0, y: 30.9, z: 0.716}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -215,7 +251,8 @@ GameObject:
   - component: {fileID: 1975852294842601554}
   - component: {fileID: 6838753658903559934}
   - component: {fileID: 6404066829832901044}
-  m_Layer: 0
+  - component: {fileID: 5305585979112636920}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -232,8 +269,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1082148459109279928}
   - {fileID: 200860750726114158}
@@ -252,6 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfed9699afbf0c4458ff05de174ca7f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMelee: {fileID: 0}
   inputDeadZone: 0.1
   shootingPivot: {fileID: 200860750726114158}
   projectilePrefab: {fileID: 2911460527291713234, guid: 7f254e3bb3eb6ee4c8cb70beb4ed18f8, type: 3}
@@ -260,14 +298,21 @@ MonoBehaviour:
   - {fileID: 2911460527291713234, guid: 387fd8961573a964a842d6a58ca1a0f6, type: 3}
   - {fileID: 2911460527291713234, guid: db0b00fe337e0704d95fb999512c8c26, type: 3}
   - {fileID: 2911460527291713234, guid: ace3ea4c3a26a10449677c7c7152db1a, type: 3}
+  inmune: 0
+  inmuneDuration: 2
   especialAmmo: 00000000000000000000000000000000
   bulletFireRate: 0.5
   multiplyFireRateBy: 1
   playerMoveSpeed: 5
   bulletDamage: 1
-  maxHealth: 3
+  currentHealth: 3
   bulletCriticalChance: 0.1
   bulletSpeed: 10
+  meleeDamage: 1
+  meleemultiplyMeleeRateBy: 1
+  knockbackForce: 7
+  knockbackDuration: 0.5
+  disableInputDuringKnockback: 0
 --- !u!136 &6838753658903559934
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -318,3 +363,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &5305585979112636920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7895556629441024295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9b4cd438057774db9716b76026a916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeHitbox: {fileID: 7019798656899316210}
+  player: {fileID: 1975852294842601554}
+  MeleeCooldownRate: 1
