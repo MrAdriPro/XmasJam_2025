@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8027787848104999598}
   - component: {fileID: 7991204448652424117}
+  - component: {fileID: 1082315995447184823}
   - component: {fileID: 157002456212151636}
   - component: {fileID: 5055831892455339850}
   m_Layer: 6
@@ -59,6 +60,22 @@ MonoBehaviour:
     m_Bits: 8
   playerCol: []
   actionActive: 0
+--- !u!114 &1082315995447184823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5237048917811981342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108fffb0ff575534d82af1feee0c530b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyController: {fileID: 7991204448652424117}
+  data: {fileID: 11400000, guid: 22d284e27d56b234f8e06502d50028a8, type: 2}
+  jumpForce: 2.8
+  jumpDuration: 2
 --- !u!136 &157002456212151636
 CapsuleCollider:
   m_ObjectHideFlags: 0

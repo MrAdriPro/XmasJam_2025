@@ -78,10 +78,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.45
+  m_Radius: 0.5291693
   m_Height: 2.38
   m_Direction: 1
-  m_Center: {x: 0, y: 0.75725853, z: 0.008417964}
+  m_Center: {x: -0.0055696964, y: 0.75725853, z: 0.008417964}
 --- !u!54 &5055831892455339850
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 6281277215101002995}
   - component: {fileID: 6689202017908997137}
   - component: {fileID: 6188704998354328765}
+  - component: {fileID: 2708405088771511894}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -218,8 +219,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.23487401, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 1923841734, guid: bd2b3fd47473ff5479c2a782b1abe44c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -241,3 +242,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da26ea716a190054d8c23977cc03ec0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &2708405088771511894
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672296587711424552}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f25416600e0ef144a95f493dc691f5a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
