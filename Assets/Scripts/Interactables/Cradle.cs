@@ -18,7 +18,7 @@ public class Cradle : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        if (!Input.GetKeyDown(interactKey)) return;
+        if (!Input.GetKey(interactKey)) return;
 
         var carry = other.GetComponentInChildren<PlayerCarry>() ?? other.GetComponentInParent<PlayerCarry>();
         if (carry == null || !carry.HasItem)
@@ -37,12 +37,11 @@ public class Cradle : MonoBehaviour
         if (map.spawnObject.scene.IsValid())
         {
             map.spawnObject.SetActive(true);
-            map.spawnObject.transform.position = transform.position + spawnOffset;
-            map.spawnObject.transform.rotation = transform.rotation;
+            
         }
         else
         {
-            var inst = Instantiate(map.spawnObject, transform.position + spawnOffset, transform.rotation);
+            var inst = Instantiate(map.spawnObject, transform.position , transform.rotation);
             inst.transform.SetParent(transform);
         }
 

@@ -33,7 +33,8 @@ public class DifficultyUI : MonoBehaviour
 	private int difficultiesCount = 0;
 	private float pointerTargetX = 0f;
 
-	private void Start()
+    [Obsolete]
+    private void Start()
 	{
 		if (trackRect == null || pointer == null || labelPrefab == null || labelsParent == null || spawnManager == null)
 		{

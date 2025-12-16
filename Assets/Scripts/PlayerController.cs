@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [Header("MovementConfiguration")]
     public float inputDeadZone = 0.1f;
     private Vector3 movementInput;
+    public GameObject model;
 
     [Header("Combat Configuration")]
     public Transform shootingPivot;
@@ -166,11 +167,11 @@ public class PlayerController : MonoBehaviour
     {
         if(movementInput.x < 0)
         {
-            transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            model.transform.localScale = new Vector3(-1, 1, 1);
         }
         else if (movementInput.x > 0)
         {
-            transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+            model.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 

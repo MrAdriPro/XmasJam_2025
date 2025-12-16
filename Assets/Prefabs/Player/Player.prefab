@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 6838753658903559934}
   - component: {fileID: 6404066829832901044}
   - component: {fileID: 5305585979112636920}
+  - component: {fileID: 4604582663747831317}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -291,6 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMelee: {fileID: 0}
   inputDeadZone: 0.1
+  model: {fileID: 2067190339435806838}
   shootingPivot: {fileID: 200860750726114158}
   projectilePrefab: {fileID: 2911460527291713234, guid: 7f254e3bb3eb6ee4c8cb70beb4ed18f8, type: 3}
   especialProjectiles:
@@ -378,3 +380,17 @@ MonoBehaviour:
   meleeHitbox: {fileID: 7019798656899316210}
   player: {fileID: 1975852294842601554}
   MeleeCooldownRate: 1
+--- !u!114 &4604582663747831317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7895556629441024295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 845031e3ce3a95a46a53242a4163fdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carriedItemId: 
+  carriedPrefab: {fileID: 0}
