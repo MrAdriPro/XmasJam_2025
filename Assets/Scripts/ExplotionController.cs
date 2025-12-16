@@ -46,7 +46,7 @@ public class ExplotionController : MonoBehaviour
                 {
                     PlayerController player = target.GetComponent<PlayerController>();
 
-                    player.TakeDamage(damage);
+                    player.TakeDamage(damage, transform.position);
                 }
 
                 if (target.gameObject.CompareTag("Enemy"))

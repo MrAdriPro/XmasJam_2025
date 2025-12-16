@@ -40,7 +40,7 @@ public class CowExplotion : MonoBehaviour
             {
                 PlayerController playerController = player.GetComponent<PlayerController>();
 
-                playerController.TakeDamage(damage);
+                playerController.TakeDamage(damage,transform.position);
             }
 
             foreach (var enemy in enemyTargets)

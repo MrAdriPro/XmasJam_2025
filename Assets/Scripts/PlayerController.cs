@@ -1,4 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -26,11 +25,18 @@ public class PlayerController : MonoBehaviour
     private float originalFireRate;
     public float playerMoveSpeed = 5f;
     public float bulletDamage = 1f;
-    public float maxHealth = 3;
+    public float currentHealth = 3;
     public float bulletCriticalChance = 1f;
     public float bulletSpeed = 10f;
     public float meleeDamage = 1f;
     public float meleemultiplyMeleeRateBy = 1f;
+
+    [Header("Knockback")]
+    public float knockbackForce = 6f;
+    public float knockbackDuration = 0.25f;
+    public bool disableInputDuringKnockback = true;
+    private Vector3 knockbackVelocity = Vector3.zero;
+    private float knockbackTimeRemaining = 0f;
 
     void Start()
     {
@@ -74,16 +80,29 @@ public class PlayerController : MonoBehaviour
         ApplyMovement();
         HandleAiming();
         HandleShooting();
+        FlipOrientation();
     }
+
     private void Inmunerable()
     {
+        CancelInvoke(nameof(ResetInmune));
         inmune = true;
-        Invoke("ResetInmune", inmuneDuration);
+        Invoke(nameof(ResetInmune), inmuneDuration);
+    }
+
+    private void ResetInmune()
+    {
         inmune = false;
     }
 
     private void HandleMovementInput()
     {
+        if (disableInputDuringKnockback && knockbackTimeRemaining > 0f)
+        {
+            movementInput = Vector3.zero;
+            return;
+        }
+
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
 
@@ -102,6 +121,21 @@ public class PlayerController : MonoBehaviour
     private void ApplyMovement()
     {
         Vector3 displacement = movementInput * playerMoveSpeed * Time.deltaTime;
+
+        if (knockbackTimeRemaining > 0f)
+        {
+            displacement += knockbackVelocity * Time.deltaTime;
+            // Decaimiento suave del knockback
+            float decay = Time.deltaTime / Mathf.Max(knockbackDuration, 0.0001f);
+            knockbackVelocity = Vector3.Lerp(knockbackVelocity, Vector3.zero, decay);
+            knockbackTimeRemaining -= Time.deltaTime;
+            if (knockbackTimeRemaining <= 0f)
+            {
+                knockbackTimeRemaining = 0f;
+                knockbackVelocity = Vector3.zero;
+            }
+        }
+
         transform.position += displacement;
     }
 
@@ -126,6 +160,17 @@ public class PlayerController : MonoBehaviour
         {
             nextFireTime = Time.time + 1f / bulletFireRate * multiplyFireRateBy;
             Shoot();
+        }
+    }
+    private void FlipOrientation()
+    {
+        if(movementInput.x < 0)
+        {
+            transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        }
+        else if (movementInput.x > 0)
+        {
+            transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
         }
     }
 
@@ -196,17 +241,32 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, Vector3? hitSource = null)
     {
         if (inmune)
             return;
-        maxHealth -= amount;
+
+        currentHealth -= amount;
         Inmunerable();
-        //now push to other direction that has been hit from
-       
-        if (maxHealth <= 0)
+
+        if (hitSource.HasValue)
+        {
+            Vector3 dir = transform.position - hitSource.Value;
+            dir.y = 0f;
+            if (dir.sqrMagnitude < 0.0001f)
+            {
+                // si la fuente coincide, empujar hacia atrás del jugador
+                dir = -transform.forward;
+            }
+            Vector3 knockDir = dir.normalized;
+            knockbackVelocity = knockDir * knockbackForce;
+            knockbackTimeRemaining = knockbackDuration;
+        }
+
+        if (currentHealth <= 0)
         {
             Debug.Log("Player has died.");
+            // Aquí puedes llamar al gestor de nivel / muerte
         }
     }
 }

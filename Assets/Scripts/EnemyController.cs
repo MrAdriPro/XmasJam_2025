@@ -102,7 +102,7 @@ public class EnemyController : MonoBehaviour
     }
     private void Attack()
     {
-        player.TakeDamage(data.damage);
+        player.TakeDamage(data.damage,transform.position);
     }
 
 }

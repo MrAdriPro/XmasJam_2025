@@ -52,7 +52,7 @@ public class Proyectile : MonoBehaviour
 
         if (isPlayerShot == false && collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerController>()?.TakeDamage(1);
+            collision.GetComponent<PlayerController>()?.TakeDamage(1,transform.position);
 
             Destroy(gameObject);
         }
