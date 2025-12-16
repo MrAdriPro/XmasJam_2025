@@ -13,18 +13,30 @@ public class CamelController : MonoBehaviour
 
     private float attackCD;
 
-    private bool jumping;
+    private bool isjumping;
 
 
     private void Awake()
     {
         attackCD = data.attackRate;
+        jumpDur = jumpDuration;
     }
 
     // Update is called once per frame
     void Update()
     {
         JumpHandler();
+
+        if (isjumping == true)
+        {
+            jumpDur -= Time.deltaTime;
+        }
+
+        if (jumpDur < 0)
+        {
+            isjumping = false;
+            jumpDur = jumpDuration;
+        }
     }
 
     void JumpHandler() 
@@ -33,30 +45,40 @@ public class CamelController : MonoBehaviour
         {
             attackCD -= Time.deltaTime;
 
-            if (attackCD <= 0)
+            if (attackCD <= 0 && isjumping == false)
             {
                 JumpAttack();
                 print("CamelJump");
-                //attackCD = data.attackRate;
+                attackCD = data.attackRate;
+
             }
         }
     }
     
     void JumpAttack() 
     {
+        if (isjumping == true) return;
         // Get player Transform and Direcction
         Transform target = enemyController.playerCol[0].transform;
 
-        Vector3 targetDir = target.position - transform.position;
-
-        // Make it jump
-        if (jumpDur < jumpDuration)
+        if (target != null)
         {
-            print("Jumping");
+            Vector3 targetDir = target.position - transform.position;
 
-            jumpDur += Time.deltaTime;
+            // Make it jump
+            if (jumpDur < jumpDuration)
+            {
+                print("Jumping");
 
-            transform.position = Vector3.Lerp(transform.position, target.position + (targetDir * jumpForce), jumpDur);
+                jumpDur += Time.deltaTime;
+
+                transform.position = Vector3.Lerp(transform.position, target.position + (targetDir * jumpForce), jumpDur);
+            }
+
+            GetComponent<Rigidbody>().AddForce(targetDir * jumpForce, ForceMode.Impulse);
+
+
+            isjumping = true;
         }
     }
 }
