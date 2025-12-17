@@ -25,31 +25,7 @@ public class Inventory : MonoBehaviour
 
         if (stat == "health")
         {
-            player.currentHealth += amount;
+            player.AddHealth(amount);
         }
-    }
-
-    public void AddHealth(float amount)
-    {
-        AddUpgrade("health", amount);
-    }
-
-    public void AddAttackSpeed(float amount)
-    {
-        AddUpgrade("attackSpeed", amount);
-    }
-
-    public void AddSpeed(float amount)
-    {
-        AddUpgrade("speed", amount);
-    }
-    public void AddDamage(float amount)
-    {
-        AddUpgrade("damage", amount);
-    }
-
-    public void AddCritChance(float amount)
-    {
-        AddUpgrade("critChance", amount);
     }
 }
