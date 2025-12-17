@@ -384,4 +384,9 @@ public class PlayerController : MonoBehaviour
     {
         inventoryScript.AddUpgrade("critChance", amount);
     }
+
+    private void LimitStats() 
+    {
+        
+    }
 }
