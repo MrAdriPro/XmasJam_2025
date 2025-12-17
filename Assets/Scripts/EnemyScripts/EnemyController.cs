@@ -1,10 +1,16 @@
-using Unity.VisualScripting;
-using UnityEditor;
+using System.Collections.Generic;
 using UnityEngine;
+
+[System.Serializable]
+public class EnemyLoot
+{
+    public GameObject itemPrefab;
+    [Range(0, 100)] public float dropChance;
+}
 
 public class EnemyController : MonoBehaviour
 {
-    [Header("EnemyConfiguration")]
+    [Header("Enemy Configuration")]
     public int maxHealth = 3;
     private float currentHealth;
     public float moveSpeed = 2f;
@@ -12,28 +18,28 @@ public class EnemyController : MonoBehaviour
     public int experienceDrop = 1;
     public EnemyStats data;
     public GameObject model;
-    private Animator animator;
-    private bool isDead = false;
-    private Collider enemyCollider;
+    public Vector3 offset;
 
+    [Header("Loot System")]
+    public List<EnemyLoot> lootTable; 
 
+    [Header("Combat & Detection")]
     [SerializeField] GameObject explotion;
-
     public float overlapRadius;
     public LayerMask playerMask;
     public Collider[] playerCol;
-
     public bool actionActive = false;
 
+    private Animator animator;
+    private bool isDead = false;
+    private Collider enemyCollider;
     private Transform playerTransform;
     private PlayerController player;
-
     private Vector3 initialLocalScale;
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-
         Gizmos.DrawWireSphere(transform.position, overlapRadius);
     }
 
@@ -41,56 +47,60 @@ public class EnemyController : MonoBehaviour
     {
         enemyCollider = GetComponent<BoxCollider>();
         animator = GetComponentInChildren<Animator>();
-        currentHealth = data.maxHealth;
-        moveSpeed = data.moveSpeed;
-        damage = data.damage;
-        player = FindFirstObjectByType<PlayerController>();
 
-        initialLocalScale = model.transform.localScale;
+        if (data != null)
+        {
+            currentHealth = data.maxHealth;
+            moveSpeed = data.moveSpeed;
+            damage = data.damage;
+        }
+
+        player = FindFirstObjectByType<PlayerController>();
+        if (model != null) initialLocalScale = model.transform.localScale;
     }
 
     void Start()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
         {
-            playerTransform = player.transform;
+            playerTransform = playerObj.transform;
         }
     }
 
     void Update()
     {
+        if (isDead) return;
+
         Movement();
-        UpdateFacing(); 
+        UpdateFacing();
     }
+
     private void Movement()
     {
-        if(isDead != true)
+        if (playerTransform == null) return;
+
+        if (data.enemyType == EnemyType.Sheep || data.enemyType == EnemyType.Cow)
         {
-            if (data.enemyType == EnemyType.Sheep || data.enemyType == EnemyType.Cow && playerTransform != null)
+            Vector3 direction = (playerTransform.position - transform.position).normalized;
+            transform.position += direction * moveSpeed * Time.deltaTime;
+        }
+
+        if (data.enemyType == EnemyType.LittleBoy || data.enemyType == EnemyType.Camel)
+        {
+            playerCol = Physics.OverlapSphere(transform.position, overlapRadius, playerMask);
+
+            if (playerCol.Length > 0)
+            {
+                actionActive = true;
+            }
+            else
             {
                 Vector3 direction = (playerTransform.position - transform.position).normalized;
                 transform.position += direction * moveSpeed * Time.deltaTime;
+                actionActive = false;
             }
-
-            if (data.enemyType == EnemyType.LittleBoy || data.enemyType == EnemyType.Camel && playerTransform != null)
-            {
-                playerCol = Physics.OverlapSphere(transform.position, overlapRadius, playerMask);
-
-                if (playerCol.Length > 0)
-                {
-                    actionActive = true;
-                }
-                else
-                {
-                    Vector3 direction = (playerTransform.position - transform.position).normalized;
-                    transform.position += direction * moveSpeed * Time.deltaTime;
-
-                    actionActive = false;
-                }
-            }
-        } 
-        
+        }
     }
 
     private void UpdateFacing()
@@ -99,8 +109,8 @@ public class EnemyController : MonoBehaviour
         if (animator == null) animator = GetComponentInChildren<Animator>();
 
         float dirX = playerTransform.position.x - transform.position.x;
-
         const float epsilon = 0.01f;
+
         if (Mathf.Abs(dirX) <= epsilon)
         {
             if (data.enemyType == EnemyType.Sheep && animator != null)
@@ -113,7 +123,7 @@ public class EnemyController : MonoBehaviour
 
         float sign = Mathf.Sign(dirX);
 
-        if (data.enemyType != EnemyType.Sheep)
+        if (data.enemyType != EnemyType.Sheep && model != null)
         {
             Vector3 s = initialLocalScale;
             s.x = Mathf.Abs(initialLocalScale.x) * -sign;
@@ -137,16 +147,18 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        currentHealth -= damageAmount;
+        if (isDead) return;
 
+        currentHealth -= damageAmount;
         if (currentHealth <= 0)
         {
             Die();
         }
     }
+
     private void OnCollisionStay(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !isDead)
         {
             Attack();
         }
@@ -154,27 +166,57 @@ public class EnemyController : MonoBehaviour
 
     void Die()
     {
-        LevelManager.Instance.AddExperience(experienceDrop);
-        Destroy(enemyCollider);
-        if (data.enemyType == EnemyType.Cow) 
-        {
-            Instantiate(explotion, transform.position + new Vector3(0f,0.10f,0f), Quaternion.identity);
-        }
+        if (isDead) return;
+        isDead = true;
 
-        if (data.enemyType == EnemyType.Sheep) 
+        LevelManager.Instance.AddExperience(experienceDrop);
+
+        DropLoot();
+
+        if (enemyCollider != null) enemyCollider.enabled = false;
+
+        if (data.enemyType == EnemyType.Cow)
         {
-            isDead = true;
-            animator.SetTrigger("isDead");
-            Destroy(this.gameObject, 1f);
+            if (explotion != null)
+                Instantiate(explotion, transform.position + new Vector3(0f, 0.10f, 0f), Quaternion.identity);
+
+            Destroy(gameObject);
+        }
+        else if (data.enemyType == EnemyType.Sheep)
+        {
+            if (animator != null) animator.SetTrigger("isDead");
+            Destroy(gameObject, 1f);
         }
         else
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
-    private void Attack()
+
+    private void DropLoot()
     {
-        player.TakeDamage(data.damage,transform.position);
+        if (lootTable == null || lootTable.Count == 0) return;
+
+        foreach (EnemyLoot loot in lootTable)
+        {
+            float roll = Random.Range(0f, 100f);
+            if (roll <= loot.dropChance)
+            {
+                if (loot.itemPrefab != null)
+                {
+                    Instantiate(loot.itemPrefab, transform.position + offset, Quaternion.identity);
+                }
+            }
+        }
     }
 
+    private void Attack()
+    {
+        if (player != null)
+        {
+            player.TakeDamage(data.damage, transform.position);
+        }
+    }
 }
+
+
