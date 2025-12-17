@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyLoot
 {
     public GameObject itemPrefab;
-    [Tooltip("Cuanto más alto el número, más probable comparado con los demás")]
     public float weight = 10f;
 }
 
@@ -34,6 +33,7 @@ public class EnemyController : MonoBehaviour
     private Animator animator;
     private bool isDead = false;
     private Collider enemyCollider;
+    private Rigidbody _rb;
     private Transform playerTransform;
     private PlayerController player;
     private Vector3 initialLocalScale;
@@ -48,6 +48,7 @@ public class EnemyController : MonoBehaviour
     {
         enemyCollider = GetComponent<BoxCollider>();
         animator = GetComponentInChildren<Animator>();
+        _rb = GetComponent<Rigidbody>();
 
         if (data != null)
         {
@@ -166,12 +167,14 @@ public class EnemyController : MonoBehaviour
         DropLoot();
 
         if (enemyCollider != null) enemyCollider.enabled = false;
+        if(_rb != null) Destroy(_rb);
 
         if (data.enemyType == EnemyType.Cow)
         {
             if (explotion != null)
                 Instantiate(explotion, transform.position + new Vector3(0f, 0.10f, 0f), Quaternion.identity);
-            Destroy(gameObject);
+                animator.SetTrigger("dead");
+            Destroy(gameObject,0.6f);
         }
         else if (data.enemyType == EnemyType.Sheep)
         {
