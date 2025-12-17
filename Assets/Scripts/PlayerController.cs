@@ -360,4 +360,28 @@ public class PlayerController : MonoBehaviour
 
         print("Stats refreshed.");
     }
+
+    public void AddHealth(float amount)
+    {
+        currentHealth += amount;
+    }
+
+    public void AddAttackSpeed(float amount)
+    {
+        inventoryScript.AddUpgrade("attackSpeed", amount);
+    }
+
+    public void AddSpeed(float amount)
+    {
+        inventoryScript.AddUpgrade("speed", amount);
+    }
+    public void AddDamage(float amount)
+    {
+        inventoryScript.AddUpgrade("damage", amount);
+    }
+
+    public void AddCritChance(float amount)
+    {
+        inventoryScript.AddUpgrade("critChance", amount);
+    }
 }
