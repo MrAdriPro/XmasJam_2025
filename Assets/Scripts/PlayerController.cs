@@ -37,12 +37,12 @@ public class PlayerController : MonoBehaviour
     public float meleemultiplyMeleeRateBy = 1f;
     public float meleFireRate = 0.5f;
     
-     public float playerMoveSpeed = 5f;
-     public int meleeDamage = 1;
+    public float playerMoveSpeed = 5f;
+    public float meleeDamage = 1;
     public float bulletFireRate = 0.5f;
     public float currentHealth = 3;
     public float criticalChance = 1f;
-    
+
     
     [Header("Knockback")]
     public float knockbackForce = 6f;
@@ -262,7 +262,7 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log($"Special projectile index {currentSpecialIndex} depleted. Reverting to index 0.");
                 currentSpecialIndex = (especialProjectiles != null && especialProjectiles.Length > 0) ? 0 : -1;
-                bulletFireRate = originalFireRate;
+                //bulletFireRate = originalFireRate;
             }
         }
 
@@ -319,7 +319,15 @@ public class PlayerController : MonoBehaviour
     {
         playerMoveSpeed = data.moveSpeed + inventoryScript._upgrades["speed"];
         meleeDamage = data.meleDamage + inventoryScript._upgrades["damage"];
-        bulletFireRate = data.attackSpeed + inventoryScript._upgrades["attackSpeed"];
+        multiplyFireRateBy = data.attackSpeed - inventoryScript._upgrades["attackSpeed"];
+
+        //originalFireRate = bulletFireRate;
+
         criticalChance = data.critRate + inventoryScript._upgrades["critChance"];
+
+        Debug.Log(inventoryScript._upgrades["attackSpeed"]);
+        Debug.Log(inventoryScript._upgrades["speed"]);
+
+        print("Stats refreshed.");
     }
 }

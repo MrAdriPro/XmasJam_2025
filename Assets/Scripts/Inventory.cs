@@ -4,7 +4,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] PlayerController player;
-    public Dictionary<string, int> _upgrades = new Dictionary<string, int>();
+    public Dictionary<string, float> _upgrades = new Dictionary<string, float>();
 
     private void Start()
     {
@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
         _upgrades.Add("critChance", 0);
     }
 
-    public void AddUpgrade(string stat, int amount)
+    public void AddUpgrade(string stat, float amount)
     {
         if (stat == "damage" || stat == "attackSpeed" || stat == "speed" || stat == "critChance")
         {

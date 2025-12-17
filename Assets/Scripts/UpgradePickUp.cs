@@ -12,14 +12,16 @@ public class UpgradePickUp : MonoBehaviour
     }
     
     [SerializeField] StatName statName;
-    public int amount;
+    public float amount;
+
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             Inventory inv = other.gameObject.GetComponent<Inventory>();
             
-            inv.AddUpgrade(statName.ToString().ToLower() , amount);
+            inv.AddUpgrade(statName.ToString() , amount);
             
             Destroy(gameObject);
         }

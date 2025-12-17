@@ -4,7 +4,7 @@ public class ExplotionController : MonoBehaviour
 {
     private PlayerController data;
     public float duration = 0.5f;
-    private int damage = 4;
+    private float damage = 4;
     public float radius = 1.75f;
 
     private bool exploded;
