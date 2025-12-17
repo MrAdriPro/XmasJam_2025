@@ -10,10 +10,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject melePivot;
     [SerializeField] private Transform melePoint;
     [SerializeField] private Inventory inventoryScript;
-    
+    [SerializeField] private Animator animator;
+    private Collider playerCollider;
+
+
     [Header("MovementConfiguration")]
     public float inputDeadZone = 0.1f;
     private Vector3 movementInput;
+    private bool isDead = false;
 
     [Header("Combat Configuration")]
     public Transform shootingPivot;
@@ -54,6 +58,7 @@ public class PlayerController : MonoBehaviour
     
     void Start()
     {
+        playerCollider = GetComponent<CapsuleCollider>();
         currentHealth = data.health;
         playerMoveSpeed = data.moveSpeed;
         meleeDamage = data.meleDamage;
@@ -142,10 +147,19 @@ public class PlayerController : MonoBehaviour
         {
             movementInput = rawInput.normalized;
         }
+        if(moveX > 0f || moveX < 0f || moveZ > 0f || moveZ < 0f)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
     }
 
     private void ApplyMovement()
     {
+        if(isDead) return;
         Vector3 displacement = movementInput * playerMoveSpeed * Time.deltaTime;
 
         if (knockbackTimeRemaining > 0f)
@@ -222,11 +236,11 @@ public class PlayerController : MonoBehaviour
     {
         if(movementInput.x < 0)
         {
-            body.transform.localScale = new Vector3(1f, 1f, 1f);
+            body.transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         else if (movementInput.x > 0)
         {
-            body.transform.localScale = new Vector3(-1f, 1f, 1f);
+            body.transform.localScale = new Vector3( 1f, 1f, 1f);
         }
     }
 
@@ -320,7 +334,10 @@ public class PlayerController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Debug.Log("Player has died.");
+            isDead = true;
+            animator.SetTrigger("isDead");
+            playerCollider.enabled = false;
+
         }
     }
 
@@ -330,7 +347,6 @@ public class PlayerController : MonoBehaviour
         meleeDamage = data.meleDamage + inventoryScript._upgrades["damage"];
         multiplyFireRateBy = data.attackSpeed - inventoryScript._upgrades["attackSpeed"];
 
-        //originalFireRate = bulletFireRate;
 
         criticalChance = data.critRate + inventoryScript._upgrades["critChance"];
 

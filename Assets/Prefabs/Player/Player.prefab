@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 4186152370962442421}
   - component: {fileID: 7009431689264308398}
   - component: {fileID: 5683038893423210771}
+  - component: {fileID: 7557338238719192313}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -379,6 +380,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7557338238719192313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6794013280403027930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da26ea716a190054d8c23977cc03ec0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7019798656899316210
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6335207645950434429}
+  - component: {fileID: 8211483079636742952}
   - component: {fileID: 1975852294842601554}
   - component: {fileID: 6838753658903559934}
   - component: {fileID: 6404066829832901044}
@@ -450,6 +464,19 @@ Transform:
   - {fileID: 8224600571146117112}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8211483079636742952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7895556629441024295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a29dad96e01db4e9c4b1acf6d3a77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1975852294842601554}
 --- !u!114 &1975852294842601554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,7 +493,7 @@ MonoBehaviour:
   body: {fileID: 2067190339435806838}
   melePivot: {fileID: 4792023826174466453}
   melePoint: {fileID: 4413575275293724089}
-  inventoryScript: {fileID: 0}
+  inventoryScript: {fileID: 8211483079636742952}
   inputDeadZone: 0.1
   shootingPivot: {fileID: 200860750726114158}
   projectilePrefab: {fileID: 2911460527291713234, guid: 7f254e3bb3eb6ee4c8cb70beb4ed18f8, type: 3}
@@ -478,12 +505,18 @@ MonoBehaviour:
   inmune: 0
   inmuneDuration: 2
   especialAmmo: 00000000000000000000000000000000
-  data: {fileID: 0}
-  multiplyFireRateBy: 1
+  data: {fileID: 11400000, guid: 344afa639b52fce4883e2f366b4bbcd8, type: 2}
+  multiplyFireRateBy: 1.5
+  especialFireRate: 0
   bulletDamage: 1
   bulletSpeed: 10
   meleemultiplyMeleeRateBy: 1
   meleFireRate: 0.5
+  playerMoveSpeed: 5
+  meleeDamage: 1
+  bulletFireRate: 0.5
+  currentHealth: 3
+  criticalChance: 1
   knockbackForce: 7
   knockbackDuration: 0.5
   disableInputDuringKnockback: 0

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,6 +12,10 @@ public class EnemyController : MonoBehaviour
     public int experienceDrop = 1;
     public EnemyStats data;
     public GameObject model;
+    private Animator animator;
+    private bool isDead = false;
+    private Collider enemyCollider;
+
 
     [SerializeField] GameObject explotion;
 
@@ -34,6 +39,8 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        enemyCollider = GetComponent<BoxCollider>();
+        animator = GetComponentInChildren<Animator>();
         currentHealth = data.maxHealth;
         moveSpeed = data.moveSpeed;
         damage = data.damage;
@@ -53,46 +60,79 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if (data.enemyType == EnemyType.Sheep || data.enemyType == EnemyType.Cow && playerTransform != null)
+        Movement();
+        UpdateFacing(); 
+    }
+    private void Movement()
+    {
+        if(isDead != true)
         {
-            Vector3 direction = (playerTransform.position - transform.position).normalized;
-            transform.position += direction * moveSpeed * Time.deltaTime;
-        }
-
-        if (data.enemyType == EnemyType.LittleBoy || data.enemyType == EnemyType.Camel && playerTransform != null)
-        {
-            playerCol = Physics.OverlapSphere(transform.position, overlapRadius, playerMask);
-
-            if (playerCol.Length > 0)
-            {
-                actionActive = true;
-            }
-            else 
+            if (data.enemyType == EnemyType.Sheep || data.enemyType == EnemyType.Cow && playerTransform != null)
             {
                 Vector3 direction = (playerTransform.position - transform.position).normalized;
                 transform.position += direction * moveSpeed * Time.deltaTime;
-
-                actionActive = false;
             }
-        }
 
-        UpdateFacing(); 
+            if (data.enemyType == EnemyType.LittleBoy || data.enemyType == EnemyType.Camel && playerTransform != null)
+            {
+                playerCol = Physics.OverlapSphere(transform.position, overlapRadius, playerMask);
+
+                if (playerCol.Length > 0)
+                {
+                    actionActive = true;
+                }
+                else
+                {
+                    Vector3 direction = (playerTransform.position - transform.position).normalized;
+                    transform.position += direction * moveSpeed * Time.deltaTime;
+
+                    actionActive = false;
+                }
+            }
+        } 
+        
     }
 
     private void UpdateFacing()
     {
         if (playerTransform == null) return;
+        if (animator == null) animator = GetComponentInChildren<Animator>();
 
         float dirX = playerTransform.position.x - transform.position.x;
 
         const float epsilon = 0.01f;
-        if (Mathf.Abs(dirX) <= epsilon) return;
+        if (Mathf.Abs(dirX) <= epsilon)
+        {
+            if (data.enemyType == EnemyType.Sheep && animator != null)
+            {
+                animator.SetBool("isWalkingRight", false);
+                animator.SetBool("isWalkingLeft", false);
+            }
+            return;
+        }
 
-        float sign = Mathf.Sign(dirX); 
+        float sign = Mathf.Sign(dirX);
 
-        Vector3 s = initialLocalScale;
-        s.x = Mathf.Abs(initialLocalScale.x) * -sign;
-        model.transform.localScale = s;
+        if (data.enemyType != EnemyType.Sheep)
+        {
+            Vector3 s = initialLocalScale;
+            s.x = Mathf.Abs(initialLocalScale.x) * -sign;
+            model.transform.localScale = s;
+        }
+
+        if (data.enemyType == EnemyType.Sheep && animator != null)
+        {
+            if (dirX > 0f)
+            {
+                animator.SetBool("isWalkingRight", false);
+                animator.SetBool("isWalkingLeft", true);
+            }
+            else
+            {
+                animator.SetBool("isWalkingRight", true);
+                animator.SetBool("isWalkingLeft", false);
+            }
+        }
     }
 
     public void TakeDamage(float damageAmount)
@@ -115,13 +155,22 @@ public class EnemyController : MonoBehaviour
     void Die()
     {
         LevelManager.Instance.AddExperience(experienceDrop);
-
+        Destroy(enemyCollider);
         if (data.enemyType == EnemyType.Cow) 
         {
             Instantiate(explotion, transform.position + new Vector3(0f,0.10f,0f), Quaternion.identity);
         }
 
-        Destroy(gameObject);
+        if (data.enemyType == EnemyType.Sheep) 
+        {
+            isDead = true;
+            animator.SetTrigger("isDead");
+            Destroy(this.gameObject, 1f);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
     private void Attack()
     {
