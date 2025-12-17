@@ -42,5 +42,4 @@ public class LevelManager : MonoBehaviour
         //Time.timeScale = 0;
         // UIManager.Instance.ShowLevelUpPanel();
     }
-
 }
