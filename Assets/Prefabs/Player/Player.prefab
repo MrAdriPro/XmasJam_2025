@@ -434,7 +434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6335207645950434429}
-  - component: {fileID: 8211483079636742952}
+  - component: {fileID: 7412568548110104519}
   - component: {fileID: 1975852294842601554}
   - component: {fileID: 6838753658903559934}
   - component: {fileID: 6404066829832901044}
@@ -464,7 +464,7 @@ Transform:
   - {fileID: 8224600571146117112}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8211483079636742952
+--- !u!114 &7412568548110104519
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -493,7 +493,7 @@ MonoBehaviour:
   body: {fileID: 2067190339435806838}
   melePivot: {fileID: 4792023826174466453}
   melePoint: {fileID: 4413575275293724089}
-  inventoryScript: {fileID: 8211483079636742952}
+  inventoryScript: {fileID: 7412568548110104519}
   inputDeadZone: 0.1
   shootingPivot: {fileID: 200860750726114158}
   projectilePrefab: {fileID: 2911460527291713234, guid: 7f254e3bb3eb6ee4c8cb70beb4ed18f8, type: 3}
