@@ -10,7 +10,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject melePivot;
     [SerializeField] private Transform melePoint;
     [SerializeField] private Inventory inventoryScript;
-    
+    [SerializeField] private Animator animator;
+    private Collider playerCollider;
+    private bool isDead = false;
+
     [Header("MovementConfiguration")]
     public float inputDeadZone = 0.1f;
     private Vector3 movementInput;
@@ -21,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public GameObject[] especialProjectiles;      
     public bool inmune = false;
     public float inmuneDuration = 2f;
+    private bool isAttacking;
     [Tooltip("Especial Ammo")]
     public int[] especialAmmo;
     private int currentSpecialIndex = 0; 
@@ -54,6 +58,7 @@ public class PlayerController : MonoBehaviour
     
     void Start()
     {
+        playerCollider = GetComponent<CapsuleCollider>();
         currentHealth = data.health;
         playerMoveSpeed = data.moveSpeed;
         meleeDamage = data.meleDamage;
@@ -101,6 +106,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(isDead) return;
         HandleMovementInput();
         ApplyMovement();
         HandleAiming();
@@ -142,10 +148,19 @@ public class PlayerController : MonoBehaviour
         {
             movementInput = rawInput.normalized;
         }
+        if(moveX >0f || moveX <0f || moveZ >0f || moveZ <0f)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
     }
 
     private void ApplyMovement()
     {
+        if(isDead) return;
         Vector3 displacement = movementInput * playerMoveSpeed * Time.deltaTime;
 
         if (knockbackTimeRemaining > 0f)
@@ -178,6 +193,15 @@ public class PlayerController : MonoBehaviour
             shootingPivot.LookAt(point);
             melePivot.transform.LookAt(point);
             shootingPivot.localEulerAngles = new Vector3(0, shootingPivot.localEulerAngles.y, 0);
+            if (point.x < 0f && isAttacking)
+            {
+                body.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+            else if (point.x > 0f && isAttacking)
+            {
+                body.transform.localScale = new Vector3(-1f, 1f, 1f);
+            }
+            print(point);
         }
     }
 
@@ -202,31 +226,34 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Fire2") && Time.time > nextMeleTime && Time.time > nextFireTime)
         {
+            isAttacking = true;
             nextMeleTime = Time.time + 1f / meleFireRate;
+            animator.SetBool("attack", true);
             Mele();
+        }
+        else
+        {
+            isAttacking = false;
+            animator.SetBool("attack", false);
         }
     }
 
     private void Mele() 
     {
-        if (playerMelee == null)
-        {
-            Debug.LogWarning("No mele prefab assigned (prefabToSpawn is null).");
-            return;
-        }
-
+        
         Instantiate(playerMelee, melePoint.position, Quaternion.identity);
     }
 
     private void FlipOrientation()
     {
-        if(movementInput.x < 0)
+        if(isDead) return;
+        if (movementInput.x < 0)
         {
-            body.transform.localScale = new Vector3(1f, 1f, 1f);
+            body.transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         else if (movementInput.x > 0)
         {
-            body.transform.localScale = new Vector3(-1f, 1f, 1f);
+            body.transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 
@@ -320,7 +347,9 @@ public class PlayerController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Debug.Log("Player has died.");
+            isDead = true;
+            animator.SetTrigger("isDead");
+
         }
     }
 
