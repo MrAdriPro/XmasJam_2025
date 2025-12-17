@@ -424,6 +424,7 @@ GameObject:
   - component: {fileID: 1975852294842601554}
   - component: {fileID: 6838753658903559934}
   - component: {fileID: 6404066829832901044}
+  - component: {fileID: 1723001281473157882}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -465,6 +466,7 @@ MonoBehaviour:
   body: {fileID: 2067190339435806838}
   melePivot: {fileID: 4792023826174466453}
   melePoint: {fileID: 4413575275293724089}
+  inventoryScript: {fileID: 0}
   inputDeadZone: 0.1
   shootingPivot: {fileID: 200860750726114158}
   projectilePrefab: {fileID: 2911460527291713234, guid: 7f254e3bb3eb6ee4c8cb70beb4ed18f8, type: 3}
@@ -476,15 +478,12 @@ MonoBehaviour:
   inmune: 0
   inmuneDuration: 2
   especialAmmo: 00000000000000000000000000000000
-  bulletFireRate: 0.5
+  data: {fileID: 0}
   multiplyFireRateBy: 1
-  playerMoveSpeed: 5
   bulletDamage: 1
-  currentHealth: 3
-  bulletCriticalChance: 0.1
   bulletSpeed: 10
-  meleeDamage: 1
   meleemultiplyMeleeRateBy: 1
+  meleFireRate: 0.5
   knockbackForce: 7
   knockbackDuration: 0.5
   disableInputDuringKnockback: 0
@@ -538,3 +537,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1723001281473157882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7895556629441024295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 845031e3ce3a95a46a53242a4163fdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carriedItemId: 
+  carriedPrefab: {fileID: 0}

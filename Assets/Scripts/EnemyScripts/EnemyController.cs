@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     public float damage = 1f;
     public int experienceDrop = 1;
     public EnemyStats data;
+    public GameObject model;
 
     [SerializeField] GameObject explotion;
 
@@ -21,6 +22,8 @@ public class EnemyController : MonoBehaviour
 
     private Transform playerTransform;
     private PlayerController player;
+
+    private Vector3 initialLocalScale;
 
     private void OnDrawGizmos()
     {
@@ -35,6 +38,8 @@ public class EnemyController : MonoBehaviour
         moveSpeed = data.moveSpeed;
         damage = data.damage;
         player = FindFirstObjectByType<PlayerController>();
+
+        initialLocalScale = model.transform.localScale;
     }
 
     void Start()
@@ -70,6 +75,24 @@ public class EnemyController : MonoBehaviour
                 actionActive = false;
             }
         }
+
+        UpdateFacing(); 
+    }
+
+    private void UpdateFacing()
+    {
+        if (playerTransform == null) return;
+
+        float dirX = playerTransform.position.x - transform.position.x;
+
+        const float epsilon = 0.01f;
+        if (Mathf.Abs(dirX) <= epsilon) return;
+
+        float sign = Mathf.Sign(dirX); 
+
+        Vector3 s = initialLocalScale;
+        s.x = Mathf.Abs(initialLocalScale.x) * -sign;
+        model.transform.localScale = s;
     }
 
     public void TakeDamage(float damageAmount)

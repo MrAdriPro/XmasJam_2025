@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8027787848104999598}
   - component: {fileID: 7991204448652424117}
-  - component: {fileID: 157002456212151636}
   - component: {fileID: 5055831892455339850}
+  - component: {fileID: 2284612423404587204}
   m_Layer: 6
   m_Name: Cow
   m_TagString: Enemy
@@ -52,6 +52,7 @@ MonoBehaviour:
   damage: 1
   experienceDrop: 10
   data: {fileID: 11400000, guid: d66658a5d700e7e449391c9008661add, type: 2}
+  model: {fileID: 8005117086288774259}
   explotion: {fileID: 8786811043250572203, guid: 5f768c11688aee44bafab3a8d148c1b0, type: 3}
   overlapRadius: 0
   playerMask:
@@ -59,29 +60,6 @@ MonoBehaviour:
     m_Bits: 8
   playerCol: []
   actionActive: 0
---- !u!136 &157002456212151636
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5237048917811981342}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5291693
-  m_Height: 2.38
-  m_Direction: 1
-  m_Center: {x: -0.0055696964, y: 0.75725853, z: 0.008417964}
 --- !u!54 &5055831892455339850
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109,6 +87,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!65 &2284612423404587204
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5237048917811981342}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.6392717, y: 1.8035712, z: 1.0741189}
+  m_Center: {x: 0.061464787, y: 0.8858435, z: -0.015813231}
 --- !u!1 &8005117086288774259
 GameObject:
   m_ObjectHideFlags: 0

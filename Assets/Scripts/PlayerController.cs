@@ -1,4 +1,5 @@
-using System.ComponentModel;
+using System;
+using System.Reflection;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -36,12 +37,11 @@ public class PlayerController : MonoBehaviour
     public float meleemultiplyMeleeRateBy = 1f;
     public float meleFireRate = 0.5f;
     
-    // Modificable Stats
-    [System.NonSerialized] public float playerMoveSpeed = 5f;
-    [System.NonSerialized] public int meleeDamage = 1;
-    [System.NonSerialized] public float bulletFireRate = 0.5f;
-    [System.NonSerialized] public float currentHealth = 3;
-    [System.NonSerialized] public float criticalChance = 1f;
+     public float playerMoveSpeed = 5f;
+     public int meleeDamage = 1;
+    public float bulletFireRate = 0.5f;
+    public float currentHealth = 3;
+    public float criticalChance = 1f;
     
     
     [Header("Knockback")]
@@ -53,7 +53,6 @@ public class PlayerController : MonoBehaviour
     
     void Start()
     {
-        // Set "PlayerStats SO" variables
         currentHealth = data.health;
         playerMoveSpeed = data.moveSpeed;
         meleeDamage = data.meleDamage;
@@ -303,7 +302,6 @@ public class PlayerController : MonoBehaviour
             dir.y = 0f;
             if (dir.sqrMagnitude < 0.0001f)
             {
-                // si la fuente coincide, empujar hacia atr�s del jugador
                 dir = -transform.forward;
             }
             Vector3 knockDir = dir.normalized;
@@ -314,7 +312,6 @@ public class PlayerController : MonoBehaviour
         if (currentHealth <= 0)
         {
             Debug.Log("Player has died.");
-            // Aqu� puedes llamar al gestor de nivel / muerte
         }
     }
 
@@ -322,11 +319,7 @@ public class PlayerController : MonoBehaviour
     {
         playerMoveSpeed = data.moveSpeed + inventoryScript._upgrades["speed"];
         meleeDamage = data.meleDamage + inventoryScript._upgrades["damage"];
-        
-        //AdriChupala
-        multiplyFireRateBy = data.attackSpeed + inventoryScript._upgrades["attackSpeed"];
-        
-        
+        bulletFireRate = data.attackSpeed + inventoryScript._upgrades["attackSpeed"];
         criticalChance = data.critRate + inventoryScript._upgrades["critChance"];
     }
 }

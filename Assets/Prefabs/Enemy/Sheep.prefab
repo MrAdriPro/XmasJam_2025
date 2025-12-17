@@ -52,6 +52,7 @@ MonoBehaviour:
   damage: 1
   experienceDrop: 10
   data: {fileID: 11400000, guid: ac0dcb15668122f47b2072f7d6621a9c, type: 2}
+  model: {fileID: 8005117086288774259}
   explotion: {fileID: 8786811043250572203, guid: 5f768c11688aee44bafab3a8d148c1b0, type: 3}
   overlapRadius: 0
   playerMask:
