@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     public GameObject[] especialProjectiles;      
     public bool inmune = false;
     public float inmuneDuration = 2f;
-    private bool isAttacking;
     [Tooltip("Especial Ammo")]
     public int[] especialAmmo;
     private int currentSpecialIndex = 0; 
@@ -193,15 +192,10 @@ public class PlayerController : MonoBehaviour
             shootingPivot.LookAt(point);
             melePivot.transform.LookAt(point);
             shootingPivot.localEulerAngles = new Vector3(0, shootingPivot.localEulerAngles.y, 0);
-            if (point.x < 0f && isAttacking)
+            if(shootingPivot.position.x < 0f )
             {
-                body.transform.localScale = new Vector3(1f, 1f, 1f);
+
             }
-            else if (point.x > 0f && isAttacking)
-            {
-                body.transform.localScale = new Vector3(-1f, 1f, 1f);
-            }
-            print(point);
         }
     }
 
@@ -226,14 +220,12 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Fire2") && Time.time > nextMeleTime && Time.time > nextFireTime)
         {
-            isAttacking = true;
             nextMeleTime = Time.time + 1f / meleFireRate;
             animator.SetBool("attack", true);
             Mele();
         }
         else
         {
-            isAttacking = false;
             animator.SetBool("attack", false);
         }
     }

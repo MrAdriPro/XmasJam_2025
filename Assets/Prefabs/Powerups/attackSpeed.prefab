@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 2551593660158878957}
   - component: {fileID: 5219747599139316720}
   m_Layer: 0
-  m_Name: BaseUpgrade
+  m_Name: attackSpeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statName: 2
-  amount: 0.5
+  amount: 0.8
 --- !u!1 &8404414109907942557
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4728644669550212225}
   - component: {fileID: 7061763529433601866}
+  - component: {fileID: 5131288605864758991}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -205,7 +206,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c2c6b849694033a488d1b8ade43496d0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: caeb4751c442a64439c330f833d0f87a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -216,3 +217,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5131288605864758991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8404414109907942557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da26ea716a190054d8c23977cc03ec0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
