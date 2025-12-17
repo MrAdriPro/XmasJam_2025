@@ -1,11 +1,12 @@
+using System.Collections;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class LittleBoyShooter : MonoBehaviour
 {
     [SerializeField] private EnemyController enemyController;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private EnemyStats enemyStats;
+    private Animator animator;
 
     public float attackRate = 2f;
 
@@ -13,6 +14,7 @@ public class LittleBoyShooter : MonoBehaviour
 
     private void Awake()
     {
+        animator = GetComponentInChildren<Animator>();
         attackRate = enemyStats.attackRate;
     }
 
@@ -24,6 +26,7 @@ public class LittleBoyShooter : MonoBehaviour
 
             if (timer > attackRate) 
             {
+                
                 Shoot();
             }
         }
@@ -31,6 +34,7 @@ public class LittleBoyShooter : MonoBehaviour
         {
             timer = 0f;
             print("Shootn't");
+            
         }   
     }
 
@@ -48,9 +52,14 @@ public class LittleBoyShooter : MonoBehaviour
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
 
-
+        StartCoroutine(Delay());
         Instantiate(projectilePrefab, transform.position + new Vector3(0f,0.2f,0f) , rotation);
 
         timer = 0f;
+    }
+    IEnumerator Delay()
+    {
+        animator.SetTrigger("isAttacking");
+        yield return new WaitForSeconds(0.5f);
     }
 }
