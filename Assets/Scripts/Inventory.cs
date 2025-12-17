@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour
 
         if (stat == "health")
         {
-            player.AddHealth(amount);
+            player.currentHealth += amount;
         }
     }
 }
