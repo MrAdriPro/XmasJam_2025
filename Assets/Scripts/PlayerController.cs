@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerStats data;
     public float multiplyFireRateBy = 1f;
     private float originalFireRate;
+    public float especialFireRate;
     public float bulletDamage = 1f;
     public float bulletSpeed = 10f;
     public float meleemultiplyMeleeRateBy = 1f;
@@ -182,6 +183,14 @@ public class PlayerController : MonoBehaviour
 
     private void HandleShooting()
     {
+        if(currentSpecialIndex != 0)
+        {
+            if (Input.GetButton("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
+            {
+                nextFireTime = Time.time + 1f / especialFireRate;
+                Shoot();
+            }
+        }
         if (Input.GetButton("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
         {
             nextFireTime = Time.time + 1f / bulletFireRate * multiplyFireRateBy;
@@ -282,7 +291,7 @@ public class PlayerController : MonoBehaviour
         especialAmmo[index] = Mathf.Max(0, especialAmmo[index] + ammoAmount);
 
         currentSpecialIndex = index;
-        bulletFireRate = fireRate;
+        especialFireRate = fireRate;
         //playerMelee.MeleeCooldownRate = meleeRate;
         Debug.Log($"Picked up special projectile index {index} (+{ammoAmount} ammo). Now active (ammo: {especialAmmo[index]}).");
 
