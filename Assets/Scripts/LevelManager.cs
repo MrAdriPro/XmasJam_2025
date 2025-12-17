@@ -7,6 +7,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform[] buttonsPos;
     [SerializeField] private GameObject levelUpPanel;
 
+    public bool[] buttonsOff = new bool[5];
+
     public int currentLevel = 1;
     public int currentXP = 0;
     private int xpToNextLevel = 10; 
@@ -105,8 +107,16 @@ public class LevelManager : MonoBehaviour
             {
                 button.SetActive(false);
             }
-            
+
             Time.timeScale = 1;
+        }
+    }
+
+    private void OffButtons()
+    {
+        foreach (var button in buttons)
+        {
+            
         }
     }
 }

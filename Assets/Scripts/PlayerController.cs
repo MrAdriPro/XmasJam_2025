@@ -47,6 +47,10 @@ public class PlayerController : MonoBehaviour
     public float currentHealth = 3;
     public float criticalChance = 1f;
 
+    [Header("StatLimits")]
+
+    public float asLimit = 0f;
+
     
     [Header("Knockback")]
     public float knockbackForce = 6f;
@@ -387,6 +391,9 @@ public class PlayerController : MonoBehaviour
 
     private void LimitStats() 
     {
-        
+        if(multiplyFireRateBy < asLimit)
+        {
+            multiplyFireRateBy = asLimit;
+        }
     }
 }
