@@ -49,12 +49,16 @@ public class LevelManager : MonoBehaviour
         print("Leveled up to Level " + currentLevel + "! Next level at " + xpToNextLevel + " XP.");
 
 
+        UpgradeScreen();
+
+        // UIManager.Instance.ShowLevelUpPanel();
+    }
+
+    private void UpgradeScreen()
+    {
         // Elige botón random
         RandomizeCard();
         
-        // Activa panel
-        AltPanel(true);
-
         // Los pone en las posiciones correspondientes
         buttons[buttonNum1].transform.position = buttonsPos[0].position;
         buttons[buttonNum2].transform.position = buttonsPos[1].position;
@@ -64,10 +68,13 @@ public class LevelManager : MonoBehaviour
         buttons[buttonNum1].SetActive(true);
         buttons[buttonNum2].SetActive(true);
         buttons[buttonNum3].SetActive(true);
-
-        // UIManager.Instance.ShowLevelUpPanel();
+        
+        // Desactiva los que hayas llegado al cap de la stat
+        OffButtons();
+        
+        AltPanel(true);
     }
-
+    
     private void RandomizeCard()
     {
         // Elige botón random
@@ -114,9 +121,12 @@ public class LevelManager : MonoBehaviour
 
     private void OffButtons()
     {
-        foreach (var button in buttons)
+        for (int i = 0; i < buttons.Length; i++)
         {
-            
+            if (buttonsOff[i] == true)
+            {
+                buttons[i].SetActive(false);
+            }
         }
     }
 }

@@ -1203,7 +1203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &451920102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2666,7 +2666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1477072159
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3839,7 +3839,7 @@ PrefabInstance:
     - target: {fileID: 1916781550132585730, guid: 8c196122d8aa3ba43b4d8b6372e29435, type: 3}
       propertyPath: levelUpPanel
       value: 
-      objectReference: {fileID: 451920101}
+      objectReference: {fileID: 1477072158}
     - target: {fileID: 1916781550132585730, guid: 8c196122d8aa3ba43b4d8b6372e29435, type: 3}
       propertyPath: buttons.Array.size
       value: 5
@@ -3867,6 +3867,18 @@ PrefabInstance:
     - target: {fileID: 1916781550132585730, guid: 8c196122d8aa3ba43b4d8b6372e29435, type: 3}
       propertyPath: buttonsPos.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916781550132585730, guid: 8c196122d8aa3ba43b4d8b6372e29435, type: 3}
+      propertyPath: 'buttonsOff.Array.data[0]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916781550132585730, guid: 8c196122d8aa3ba43b4d8b6372e29435, type: 3}
+      propertyPath: 'buttonsOff.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916781550132585730, guid: 8c196122d8aa3ba43b4d8b6372e29435, type: 3}
+      propertyPath: 'buttonsOff.Array.data[2]'
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1916781550132585730, guid: 8c196122d8aa3ba43b4d8b6372e29435, type: 3}
       propertyPath: 'buttonsPos.Array.data[0]'
