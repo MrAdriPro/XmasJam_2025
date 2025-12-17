@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyLoot
 {
     public GameObject itemPrefab;
-    [Range(0, 100)] public float dropChance;
+    public float weight = 10f;
 }
 
 public class EnemyController : MonoBehaviour
@@ -18,9 +18,9 @@ public class EnemyController : MonoBehaviour
     public int experienceDrop = 1;
     public EnemyStats data;
     public GameObject model;
-    public Vector3 offset;
 
     [Header("Loot System")]
+    [Range(0, 100)] public float globalDropChance = 50f; 
     public List<EnemyLoot> lootTable; 
 
     [Header("Combat & Detection")]
@@ -33,6 +33,7 @@ public class EnemyController : MonoBehaviour
     private Animator animator;
     private bool isDead = false;
     private Collider enemyCollider;
+    private Rigidbody _rb;
     private Transform playerTransform;
     private PlayerController player;
     private Vector3 initialLocalScale;
@@ -47,6 +48,7 @@ public class EnemyController : MonoBehaviour
     {
         enemyCollider = GetComponent<BoxCollider>();
         animator = GetComponentInChildren<Animator>();
+        _rb = GetComponent<Rigidbody>();
 
         if (data != null)
         {
@@ -71,7 +73,6 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         if (isDead) return;
-
         Movement();
         UpdateFacing();
     }
@@ -89,7 +90,6 @@ public class EnemyController : MonoBehaviour
         if (data.enemyType == EnemyType.LittleBoy || data.enemyType == EnemyType.Camel)
         {
             playerCol = Physics.OverlapSphere(transform.position, overlapRadius, playerMask);
-
             if (playerCol.Length > 0)
             {
                 actionActive = true;
@@ -148,20 +148,13 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         if (isDead) return;
-
         currentHealth -= damageAmount;
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+        if (currentHealth <= 0) Die();
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !isDead)
-        {
-            Attack();
-        }
+        if (collision.gameObject.CompareTag("Player") && !isDead) Attack();
     }
 
     void Die()
@@ -174,13 +167,14 @@ public class EnemyController : MonoBehaviour
         DropLoot();
 
         if (enemyCollider != null) enemyCollider.enabled = false;
+        if(_rb != null) Destroy(_rb);
 
         if (data.enemyType == EnemyType.Cow)
         {
             if (explotion != null)
                 Instantiate(explotion, transform.position + new Vector3(0f, 0.10f, 0f), Quaternion.identity);
-
-            Destroy(gameObject);
+                animator.SetTrigger("dead");
+            Destroy(gameObject,0.6f);
         }
         else if (data.enemyType == EnemyType.Sheep)
         {
@@ -197,25 +191,35 @@ public class EnemyController : MonoBehaviour
     {
         if (lootTable == null || lootTable.Count == 0) return;
 
-        foreach (EnemyLoot loot in lootTable)
+        float globalRoll = Random.Range(0f, 100f);
+        if (globalRoll > globalDropChance) return; 
+
+        float totalWeight = 0f;
+        foreach (var loot in lootTable)
         {
-            float roll = Random.Range(0f, 100f);
-            if (roll <= loot.dropChance)
+            totalWeight += loot.weight;
+        }
+
+        float randomWeightRoll = Random.Range(0f, totalWeight);
+        float currentWeightSum = 0f;
+
+        foreach (var loot in lootTable)
+        {
+            currentWeightSum += loot.weight;
+            if (randomWeightRoll <= currentWeightSum)
             {
                 if (loot.itemPrefab != null)
                 {
-                    Instantiate(loot.itemPrefab, transform.position + offset, Quaternion.identity);
+                    Instantiate(loot.itemPrefab, transform.position + new Vector3(0,1,0), Quaternion.identity);
                 }
+                break; 
             }
         }
     }
 
     private void Attack()
     {
-        if (player != null)
-        {
-            player.TakeDamage(data.damage, transform.position);
-        }
+        if (player != null) player.TakeDamage(data.damage, transform.position);
     }
 }
 
