@@ -13,7 +13,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (playerController != null)
         {
-            //playerController.Shoot();
+            //playerController.ShootAnimationEvent();
         }
     }
 

@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-guid: 36cfeaa3dc8155b49bad659c42d5ef59
+guid: 4738c704061f38348bacb990952766ec
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -3327893968578585566
-    second: "Ilustracio\u0301n_sin_ti\u0301tulo (8)_0"
-  - first:
-      213: 7663455549812173288
-    second: "Ilustracio\u0301n_sin_ti\u0301tulo (8)_1"
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,21 +34,21 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,45 +97,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Ilustracio\u0301n_sin_ti\u0301tulo (8)_0"
+      name: disparo SIMPLE spritesheet_0
       rect:
         serializedVersion: 2
-        x: 101
-        y: 101
-        width: 378
-        height: 439
+        x: 0
+        y: 0
+        width: 386
+        height: 237
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 22c55b84112f0d1d0800000000000000
-      internalID: -3327893968578585566
+      spriteID: efd3fa59357a2be45909377ea71697a2
+      internalID: 1498647982
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Ilustracio\u0301n_sin_ti\u0301tulo (8)_1"
+      name: disparo SIMPLE spritesheet_1
       rect:
         serializedVersion: 2
-        x: 420
-        y: 176
-        width: 303
-        height: 394
+        x: 386
+        y: 0
+        width: 386
+        height: 237
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8e9ec8648301a5a60800000000000000
-      internalID: 7663455549812173288
+      spriteID: 3fe3b3fa8cdd3a444b9d8c0af966afd7
+      internalID: 962666084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disparo SIMPLE spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 0
+        width: 386
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 481689b863dab67488145a11785665d6
+      internalID: 1819529837
       vertices: []
       indices: 
       edges: []
@@ -150,7 +166,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 7bde055f3f033044fbf3cf0387ea882d
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +176,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "Ilustracio\u0301n_sin_ti\u0301tulo (8)_0": -3327893968578585566
-      "Ilustracio\u0301n_sin_ti\u0301tulo (8)_1": 7663455549812173288
+      disparo SIMPLE spritesheet_0: 1498647982
+      disparo SIMPLE spritesheet_1: 962666084
+      disparo SIMPLE spritesheet_2: 1819529837
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

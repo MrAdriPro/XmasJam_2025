@@ -49,7 +49,6 @@ public class Proyectile : MonoBehaviour
 
             Destroy(gameObject);
         }
-
         if (isPlayerShot == false && collision.CompareTag("Player"))
         {
             collision.GetComponent<PlayerController>()?.TakeDamage(1,transform.position);

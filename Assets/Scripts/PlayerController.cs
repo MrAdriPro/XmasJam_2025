@@ -334,7 +334,7 @@ public class PlayerController : MonoBehaviour
     }
 
   
-    public void PickupSpecialAmmo(int index, int ammoAmount, float fireRate, float meleeRate)
+    public void PickupSpecialAmmo(int index, int ammoAmount, float fireRate)
     {
         if (especialProjectiles == null || index < 0 || index >= especialProjectiles.Length)
         {
