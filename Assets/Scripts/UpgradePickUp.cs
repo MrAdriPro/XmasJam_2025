@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UpgradePickUp : MonoBehaviour
 {
-    enum StatName :byte
+    enum StatName : byte
     {
         health,
         speed,

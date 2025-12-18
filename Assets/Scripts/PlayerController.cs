@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform melePoint;
     [SerializeField] private Inventory inventoryScript;
     [SerializeField] private Animator animator;
+    public HealthUIController healthUI;
     private Collider playerCollider;
     private bool isDead = false;
     [SerializeField] private Rigidbody rb;
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
     {
         playerCollider = GetComponent<CapsuleCollider>();
         currentHealth = data.health;
+        healthUI.UpdateHearts(currentHealth);
         playerMoveSpeed = data.moveSpeed;
         meleeDamage = data.meleDamage;
         
@@ -360,6 +362,7 @@ public class PlayerController : MonoBehaviour
             return;
 
         currentHealth -= amount;
+        healthUI.UpdateHearts(currentHealth);
         Inmunerable();
 
         if (hitSource.HasValue)
@@ -404,6 +407,7 @@ public class PlayerController : MonoBehaviour
     public void AddHealth(float amount)
     {
         currentHealth += amount;
+        healthUI.UpdateHearts(currentHealth);
     }
 
     public void AddAttackSpeed(float amount)
