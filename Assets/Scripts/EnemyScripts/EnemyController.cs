@@ -78,6 +78,7 @@ public class EnemyController : MonoBehaviour
         if (isDead) return;
         Movement();
         UpdateFacing();
+
     }
 
     private void Movement()

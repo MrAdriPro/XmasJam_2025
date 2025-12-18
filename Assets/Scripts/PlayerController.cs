@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(isDead) return;
+        if(isDead || Time.timeScale == 0) return;
         HandleMovementInput();
         ApplyMovement();
         HandleAiming();
@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
-        if(isDead) return;
+        if(isDead || Time.timeScale == 0) return;
         Vector3 displacement = movementInput * playerMoveSpeed * Time.deltaTime;
 
         if (knockbackTimeRemaining > 0f)

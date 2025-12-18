@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ public class CamelController : MonoBehaviour
 {
     [SerializeField] EnemyController enemyController;
     [SerializeField] EnemyStats data;
+    private Animator animator;
 
     public float jumpForce;
 
@@ -13,11 +15,12 @@ public class CamelController : MonoBehaviour
 
     private float attackCD;
     private Rigidbody rb;
-    private bool isjumping;
+    public bool isjumping;
 
 
     private void Awake()
     {
+        animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
         attackCD = data.attackRate;
         jumpDur = jumpDuration;
@@ -79,7 +82,7 @@ public class CamelController : MonoBehaviour
 
             rb.AddForce(targetDir * jumpForce, ForceMode.Impulse);
 
-
+            animator.SetTrigger("Jump");
             isjumping = true;
         }
     }

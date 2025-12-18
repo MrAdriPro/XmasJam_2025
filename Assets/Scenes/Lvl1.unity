@@ -3246,7 +3246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e90eed4b16f1b4fb343283c6a6940c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1626561830
+--- !u!114 &1626561832
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3255,12 +3255,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 776649460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcf96240474184e449e295f93fdb6751, type: 3}
+  m_Script: {fileID: 11500000, guid: d40bae5b39c7a1a4da716163041df11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPaused: 0
   pausePanel: {fileID: 1714241549}
-  levelManager: {fileID: 1626561828}
+  winPanel: {fileID: 0}
+  losePanel: {fileID: 0}
 --- !u!4 &1633170931 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4184977123763502027, guid: 27ccf5b345df43e4990fef0ba0c56f5c, type: 3}
@@ -4624,7 +4624,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4401305298411964523, guid: 8c196122d8aa3ba43b4d8b6372e29435, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1626561830}
+      addedObject: {fileID: 1626561832}
   m_SourcePrefab: {fileID: 100100000, guid: 8c196122d8aa3ba43b4d8b6372e29435, type: 3}
 --- !u!1001 &8099920454449803405
 PrefabInstance:
@@ -4815,7 +4815,7 @@ PrefabInstance:
     - target: {fileID: 1975852294842601554, guid: 8fdd94d15829cf14fbcc00803e95a836, type: 3}
       propertyPath: uiManager
       value: 
-      objectReference: {fileID: 1626561830}
+      objectReference: {fileID: 0}
     - target: {fileID: 1975852294842601554, guid: 8fdd94d15829cf14fbcc00803e95a836, type: 3}
       propertyPath: speedLimit
       value: 26
