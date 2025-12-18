@@ -10,13 +10,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject melePivot;
     [SerializeField] private Transform melePoint;
     [SerializeField] private Inventory inventoryScript;
-    [SerializeField] private Animator animator;
+    public Animator animator;
     private Collider playerCollider;
     private bool isDead = false;
 
     [Header("MovementConfiguration")]
     public float inputDeadZone = 0.1f;
-    private Vector3 movementInput;
+    public Vector3 movementInput;
 
     [Header("Combat Configuration")]
     public Transform shootingPivot;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public float inmuneDuration = 2f;
     [Tooltip("Especial Ammo")]
     public int[] especialAmmo;
-    private int currentSpecialIndex = 0; 
+    public int currentSpecialIndex = 0; 
     private float nextFireTime;
     private float nextMeleTime;
     
@@ -229,13 +229,25 @@ public class PlayerController : MonoBehaviour
                 Shoot();
             }
         }
+        if(currentSpecialIndex == 2)
+        {
+            if (Input.GetButton("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
+            {
+                animator.SetTrigger("shoot");
+
+            }
+        }
+
         if (Input.GetButton("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
         {
             nextFireTime = Time.time + 1f / bulletFireRate * multiplyFireRateBy;
             Shoot();
         }
     }
-
+    public void ShootAnimationEvent()
+    {
+        Shoot();
+    }
     private void HandleMele()
     {
         if (Input.GetButton("Fire2") && Time.time > nextMeleTime && Time.time > nextFireTime)
@@ -333,7 +345,7 @@ public class PlayerController : MonoBehaviour
     }
 
   
-    public void PickupSpecialAmmo(int index, int ammoAmount, float fireRate, float meleeRate)
+    public void PickupSpecialAmmo(int index, int ammoAmount, float fireRate)
     {
         if (especialProjectiles == null || index < 0 || index >= especialProjectiles.Length)
         {

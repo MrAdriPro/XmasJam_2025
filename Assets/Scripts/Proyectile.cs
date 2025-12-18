@@ -50,35 +50,6 @@ public class Proyectile : MonoBehaviour
 
             Destroy(gameObject);
         }
-        if(player.currentSpecialIndex == 2)
-        {
-            if (isPlayerShot && collision.CompareTag("Enemy"))
-            {
-                player.movementInput = Vector3.zero;
-                player.animator.SetTrigger("shoot");
-                EnemyController enemy = collision.GetComponent<EnemyController>();
-                if (enemy != null && player != null)
-                {
-                    float baseDamage = player.bulletDamage * multiplyDamageBy;
-
-                    bool isCritical = Random.value < Mathf.Clamp01(player.criticalChance);
-
-                    float finalDamageFloat = baseDamage * (isCritical ? criticalMultiplier : 1f);
-
-                    int finalDamage = Mathf.CeilToInt(finalDamageFloat);
-
-                    enemy.TakeDamage(finalDamage);
-
-                    if (isCritical)
-                    {
-                        Debug.Log($"Critical! Damage: {finalDamage}");
-                    }
-                }
-
-            }
-        }
-        
-
         if (isPlayerShot == false && collision.CompareTag("Player"))
         {
             collision.GetComponent<PlayerController>()?.TakeDamage(1,transform.position);
