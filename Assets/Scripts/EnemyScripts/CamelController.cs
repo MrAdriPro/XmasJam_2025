@@ -58,6 +58,7 @@ public class CamelController : MonoBehaviour
     
     void JumpAttack() 
     {
+        if(enemyController.isDead) return;
         if (isjumping == true) return;
         // Get player Transform and Direcction
         Transform target = enemyController.playerCol[0].transform;
