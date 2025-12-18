@@ -200,24 +200,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HandleShooting()
-    {
-        if(currentSpecialIndex != 0)
-        {
-            if (Input.GetButton("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
-            {
-                nextFireTime = Time.time + 1f / especialFireRate;
-                Shoot();
-            }
-        }
-        if (Input.GetButton("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
-        {
-            nextFireTime = Time.time + 1f / bulletFireRate * multiplyFireRateBy;
-            Shoot();
-        }
-    }
+    private void HandleShooting()
+    {
+        if (currentSpecialIndex != 0)
+        {
+            if (Input.GetButton("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
+            {
+                nextFireTime = Time.time + 1f / especialFireRate;
+                animator.SetTrigger("shoot"); 
+            }
+        }
+        else if (Input.GetButton("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
+        {
+            nextFireTime = Time.time + 1f / (bulletFireRate * multiplyFireRateBy);
+            animator.SetTrigger("shoot"); 
+        }
+    }
 
-    private void HandleMele()
+    private void HandleMele()
     {
         if (Input.GetButton("Fire2") && Time.time > nextMeleTime && Time.time > nextFireTime)
         {
