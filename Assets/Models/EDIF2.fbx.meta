@@ -1,9 +1,39 @@
 fileFormatVersion: 2
-guid: 8d344b82e8f296b4fb5964fa0432863b
+guid: d5b133b7fb7473246a27520460ebd845
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: EDIF2_Alpha
+    second: {fileID: 2800000, guid: 6c222549b7b24844eb9f37fcc321f5d9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: EDIF2_BaseColor
+    second: {fileID: 2800000, guid: 775e66649004f0b43a82b5565b8eef62, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: EDIF2_Emission
+    second: {fileID: 2800000, guid: a603140c5c1ef674fbda87ac0a8b5a17, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: EDIF2_Metallic
+    second: {fileID: 2800000, guid: 2863d919dddabd442b2633b0f8263979, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: EDIF2_Normal
+    second: {fileID: 2800000, guid: 70ad5706c5bf078438e2a8b0de0d1474, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: EDIF2_Roughness
+    second: {fileID: 2800000, guid: c1ad7eb6a6dfba24ca13d6926cf8efb6, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

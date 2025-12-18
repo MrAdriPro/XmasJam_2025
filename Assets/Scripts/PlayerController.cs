@@ -10,13 +10,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject melePivot;
     [SerializeField] private Transform melePoint;
     [SerializeField] private Inventory inventoryScript;
-    public Animator animator;
+    [SerializeField] private Animator animator;
     private Collider playerCollider;
     private bool isDead = false;
 
     [Header("MovementConfiguration")]
     public float inputDeadZone = 0.1f;
-    [HideInInspector]public Vector3 movementInput;
+    private Vector3 movementInput;
 
     [Header("Combat Configuration")]
     public Transform shootingPivot;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public float inmuneDuration = 2f;
     [Tooltip("Especial Ammo")]
     public int[] especialAmmo;
-    public int currentSpecialIndex = 0; 
+    private int currentSpecialIndex = 0; 
     private float nextFireTime;
     private float nextMeleTime;
     
@@ -51,14 +51,18 @@ public class PlayerController : MonoBehaviour
     public float asLimit = 0.1f;
     public float speedLimit = 18f;
 
-
-
     [Header("Knockback")]
     public float knockbackForce = 6f;
     public float knockbackDuration = 0.25f;
     public bool disableInputDuringKnockback = true;
     private Vector3 knockbackVelocity = Vector3.zero;
     private float knockbackTimeRemaining = 0f;
+
+    [Header("FlipVars")]
+    public bool fixedFlip;
+    private bool lookLeft;
+    private bool rotationDisable;
+    
     
     void Start()
     {
@@ -198,11 +202,21 @@ public class PlayerController : MonoBehaviour
             shootingPivot.LookAt(point);
             melePivot.transform.LookAt(point);
             shootingPivot.localEulerAngles = new Vector3(0, shootingPivot.localEulerAngles.y, 0);
-            if(shootingPivot.position.x < 0f )
-            {
 
+            // Eliges si el cursor está en la izquierda o derecha
+            if(point.x < transform.position.x)
+            {
+                lookLeft = true;
             }
+            else lookLeft = false;
+
+            print("lookLeft = " + lookLeft);
         }
+    }
+
+    public void altFixedFlip(bool mode) 
+    {
+        rotationDisable = enabled;
     }
 
     private void HandleShooting()
@@ -238,20 +252,35 @@ public class PlayerController : MonoBehaviour
 
     private void Mele() 
     {
-        
         Instantiate(playerMelee, melePoint.position, Quaternion.identity);
     }
 
     private void FlipOrientation()
     {
         if(isDead) return;
-        if (movementInput.x < 0)
+        if (rotationDisable) return;
+
+        if (fixedFlip == false)
         {
-            body.transform.localScale = new Vector3(-1f, 1f, 1f);
+            if (movementInput.x < 0)
+            {
+                body.transform.localScale = new Vector3(-1f, 1f, 1f);
+            }
+            else if (movementInput.x > 0)
+            {
+                body.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
         }
-        else if (movementInput.x > 0)
+        else 
         {
-            body.transform.localScale = new Vector3(1f, 1f, 1f);
+            if (lookLeft == true)
+            {
+                body.transform.localScale = new Vector3(-1f, 1f, 1f);
+            }
+            else if (lookLeft == false)
+            {
+                body.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
         }
     }
 
@@ -304,7 +333,7 @@ public class PlayerController : MonoBehaviour
     }
 
   
-    public void PickupSpecialAmmo(int index, int ammoAmount, float fireRate)
+    public void PickupSpecialAmmo(int index, int ammoAmount, float fireRate, float meleeRate)
     {
         if (especialProjectiles == null || index < 0 || index >= especialProjectiles.Length)
         {

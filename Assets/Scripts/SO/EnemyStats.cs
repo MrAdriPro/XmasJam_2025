@@ -15,4 +15,5 @@ public enum EnemyType : byte
     Cow,
     LittleBoy,
     Camel,
+    Fontain,
 }
