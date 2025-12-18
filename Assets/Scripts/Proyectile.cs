@@ -4,7 +4,6 @@ public class Proyectile : MonoBehaviour
 {
     public float lifetime = 3f;
     private PlayerController player;
-    public bool isSniperShot = false;
     public float multiplyDamageBy = 1f;
     public float multiplySpeedBy = 1f;
 

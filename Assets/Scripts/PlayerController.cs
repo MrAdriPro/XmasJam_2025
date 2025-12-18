@@ -128,6 +128,7 @@ public class PlayerController : MonoBehaviour
     {
         CancelInvoke(nameof(ResetInmune));
         inmune = true;
+        animator.SetTrigger("hit");
         Invoke(nameof(ResetInmune), inmuneDuration);
     }
 
@@ -231,14 +232,15 @@ public class PlayerController : MonoBehaviour
         }
         if(currentSpecialIndex == 2)
         {
-            if (Input.GetButton("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
+            print("Sniper equiped");
+            if (Input.GetButtonDown("Fire1"))
             {
+                print("Disparando sniper");
                 animator.SetTrigger("shoot");
 
             }
         }
-
-        if (Input.GetButton("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
+        else if (Input.GetButtonDown("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
         {
             nextFireTime = Time.time + 1f / bulletFireRate * multiplyFireRateBy;
             Shoot();
