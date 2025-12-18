@@ -5288,7 +5288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1975852294842601554, guid: 8fdd94d15829cf14fbcc00803e95a836, type: 3}
       propertyPath: speedLimit
-      value: 26
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1975852294842601554, guid: 8fdd94d15829cf14fbcc00803e95a836, type: 3}
       propertyPath: especialAmmo.Array.size
