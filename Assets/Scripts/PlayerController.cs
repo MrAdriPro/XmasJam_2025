@@ -129,6 +129,7 @@ public class PlayerController : MonoBehaviour
     {
         CancelInvoke(nameof(ResetInmune));
         inmune = true;
+        animator.SetTrigger("hit");
         Invoke(nameof(ResetInmune), inmuneDuration);
     }
 
@@ -376,8 +377,9 @@ public class PlayerController : MonoBehaviour
         if (currentHealth <= 0)
         {
             isDead = true;
+            playerCollider.enabled = false;
             animator.SetTrigger("isDead");
-
+            animator.SetBool("dead", true);
         }
     }
 
