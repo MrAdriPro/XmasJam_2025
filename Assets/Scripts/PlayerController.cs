@@ -11,7 +11,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform melePoint;
     [SerializeField] private Inventory inventoryScript;
     [SerializeField] private Animator animator;
-    private Collider playerCollider;
+
+
+    private Collider playerCollider;
     private bool isDead = false;
 
     [Header("MovementConfiguration")]
@@ -47,8 +49,12 @@ public class PlayerController : MonoBehaviour
     public float currentHealth = 3;
     public float criticalChance = 1f;
 
-    
-    [Header("Knockback")]
+    [Header("StatsLimits")]
+    public float asLimit = 0.1f;
+    public float speedLimit = 18f;
+
+
+    [Header("Knockback")]
     public float knockbackForce = 6f;
     public float knockbackDuration = 0.25f;
     public bool disableInputDuringKnockback = true;
@@ -112,7 +118,8 @@ public class PlayerController : MonoBehaviour
         HandleShooting();
         HandleMele();
         FlipOrientation();
-    }
+        LimitStats();
+    }
 
     private void Inmunerable()
     {
@@ -385,4 +392,19 @@ public class PlayerController : MonoBehaviour
     {
         inventoryScript.AddUpgrade("critChance", amount);
     }
+
+    private void LimitStats()
+    {
+        if(multiplyFireRateBy < asLimit)
+        {
+            multiplyFireRateBy = asLimit;
+            LevelManager.Instance.buttonsOff[2] = true;
+        }
+
+        if(playerMoveSpeed > speedLimit)
+        {
+            playerMoveSpeed = speedLimit;
+            LevelManager.Instance.buttonsOff[3] = true;
+        }
+    }
 }
