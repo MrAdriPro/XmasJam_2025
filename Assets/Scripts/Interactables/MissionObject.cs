@@ -14,7 +14,6 @@ public class MissionObject : MonoBehaviour
     {
         if (!collectable) return;
         if (!other.CompareTag("Player")) return;
-            if (!Input.GetKeyDown(KeyCode.E)) return;
 
         var carry = other.GetComponentInChildren<PlayerCarry>() ?? other.GetComponentInParent<PlayerCarry>();
         if (carry == null)
