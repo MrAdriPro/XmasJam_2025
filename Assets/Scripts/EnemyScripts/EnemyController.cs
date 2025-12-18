@@ -38,6 +38,9 @@ public class EnemyController : MonoBehaviour
     private PlayerController player;
     private Vector3 initialLocalScale;
 
+    [Header("FontainVars")]
+    public bool fontainTookDamage = false;
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -155,6 +158,9 @@ public class EnemyController : MonoBehaviour
     {
         if (isDead) return;
         currentHealth -= damageAmount;
+
+        fontainTookDamage = true;
+
         if (currentHealth <= 0) Die();
     }
 
