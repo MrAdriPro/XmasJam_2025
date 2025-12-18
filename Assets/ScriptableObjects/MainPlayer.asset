@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MainPlayer
   m_EditorClassIdentifier: 
   health: 6
-  moveSpeed: 500
+  moveSpeed: 5
   attackSpeed: 1
   meleDamage: 4
   critRate: 0
