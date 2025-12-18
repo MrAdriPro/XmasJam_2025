@@ -193,10 +193,7 @@ public class PlayerController : MonoBehaviour
             shootingPivot.LookAt(point);
             melePivot.transform.LookAt(point);
             shootingPivot.localEulerAngles = new Vector3(0, shootingPivot.localEulerAngles.y, 0);
-            if(shootingPivot.position.x < 0f )
-            {
-
-            }
+            
         }
     }
 
@@ -207,13 +204,13 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButton("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
             {
                 nextFireTime = Time.time + 1f / especialFireRate;
-                animator.SetTrigger("shoot"); 
+                Shoot();
             }
         }
         else if (Input.GetButton("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
         {
             nextFireTime = Time.time + 1f / (bulletFireRate * multiplyFireRateBy);
-            animator.SetTrigger("shoot"); 
+            Shoot();
         }
     }
 
@@ -289,7 +286,7 @@ public class PlayerController : MonoBehaviour
 
             if (especialAmmo[currentSpecialIndex] == 0)
             {
-                Debug.Log($"Special projectile index {currentSpecialIndex} depleted. Reverting to index 0.");
+                Debug.Log($"Special projectile index {currentSpecialIndex} ");
                 currentSpecialIndex = (especialProjectiles != null && especialProjectiles.Length > 0) ? 0 : -1;
                 //bulletFireRate = originalFireRate;
             }

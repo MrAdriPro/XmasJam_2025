@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ac80255c515c1f1418aebdb185c503c1
+guid: 279da4eb6ac47b8418c9133620d87ac0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -44,7 +44,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 26
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: movimiento camello_0
+      name: movimiento camello 1_0
       rect:
         serializedVersion: 2
-        x: 245
-        y: 70
-        width: 519
-        height: 500
+        x: 0
+        y: 0
+        width: 1025
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,20 +112,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08a98bc020b0e8749a4a52a5f903ef3d
-      internalID: 551113608
+      spriteID: 73f4450ebf5fa0545989c6b9f561ba99
+      internalID: -417824770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimiento camello_1
+      name: movimiento camello 1_1
       rect:
         serializedVersion: 2
-        x: 1268
-        y: 70
-        width: 519
-        height: 500
+        x: 1025
+        y: 0
+        width: 1025
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,20 +134,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92e1f85108fd94a4482fc0414ad81f17
-      internalID: -1961677515
+      spriteID: 8dea80d65d3b696489d5ff55a889c2fa
+      internalID: -1184702953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimiento camello_2
+      name: movimiento camello 1_2
       rect:
         serializedVersion: 2
-        x: 2284
-        y: 70
-        width: 512
-        height: 507
+        x: 2050
+        y: 0
+        width: 1025
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,20 +156,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33c9dfd17fbc88842a268ec40d3c2fdf
-      internalID: 385630730
+      spriteID: 17b1bdfd1d093bb468dec898573afb08
+      internalID: 1913118791
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimiento camello_3
+      name: movimiento camello 1_3
       rect:
         serializedVersion: 2
-        x: 3307
-        y: 70
-        width: 498
-        height: 500
+        x: 3075
+        y: 0
+        width: 1025
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,20 +178,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abeaeec957c69ea4a877d9dc1627430b
-      internalID: -2030051588
+      spriteID: 7836dd03d04ff624ab0b8cbf3ae60b7f
+      internalID: -1728417737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimiento camello_4
+      name: movimiento camello 1_4
       rect:
         serializedVersion: 2
-        x: 4330
-        y: 70
-        width: 498
-        height: 493
+        x: 4100
+        y: 0
+        width: 1025
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbf2c02a24bdcba45be58de936846477
-      internalID: -1212558332
+      spriteID: c6b4facb6a71cf444b6256bb0af169c3
+      internalID: 1643764174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimiento camello_5
+      name: movimiento camello 1_5
       rect:
         serializedVersion: 2
-        x: 5353
-        y: 70
-        width: 498
-        height: 493
+        x: 5125
+        y: 0
+        width: 1025
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,20 +222,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bc3e3c40de6c5d4abb9bf8327710e8b
-      internalID: -1130388711
+      spriteID: 75121b4e1604ff342a812e287f1884ac
+      internalID: 2144807127
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimiento camello_6
+      name: movimiento camello 1_6
       rect:
         serializedVersion: 2
-        x: 6383
-        y: 70
-        width: 498
-        height: 500
+        x: 6150
+        y: 0
+        width: 1025
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,20 +244,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2502429217068c40ad5902e66edd20a
-      internalID: -19073889
+      spriteID: 673635513dfa82f4abf3f16220e94e4a
+      internalID: -2021876651
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimiento camello_7
+      name: movimiento camello 1_7
       rect:
         serializedVersion: 2
-        x: 7406
-        y: 70
-        width: 498
-        height: 500
+        x: 7175
+        y: 0
+        width: 1025
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,20 +266,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f0ddc21c62baee44b45eab9fed72ec7
-      internalID: 1640219517
+      spriteID: fcc29ed3afb9d4947bf60c6a6ea6208b
+      internalID: 569597836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimiento camello_8
+      name: movimiento camello 1_8
       rect:
         serializedVersion: 2
-        x: 8436
-        y: 70
-        width: 491
-        height: 500
+        x: 8200
+        y: 0
+        width: 1025
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -288,20 +288,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3da2bf75db13c0438675ad66bdc4b03
-      internalID: 1358807707
+      spriteID: 88e43d0878f94be4483983588bc5e28a
+      internalID: 419457603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimiento camello_9
+      name: movimiento camello 1_9
       rect:
         serializedVersion: 2
-        x: 9459
-        y: 70
-        width: 512
-        height: 514
+        x: 9225
+        y: 0
+        width: 1025
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -310,20 +310,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3b03f99a73010545baf5a973a4ecde9
-      internalID: 539514025
+      spriteID: 5ea69632263510b4a9781f0834bf0889
+      internalID: 508534938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimiento camello_10
+      name: movimiento camello 1_10
       rect:
         serializedVersion: 2
-        x: 10482
-        y: 70
-        width: 519
-        height: 500
+        x: 10250
+        y: 0
+        width: 1025
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -332,20 +332,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f40cf3f44d09054685ae23537c32f58
-      internalID: -1718913870
+      spriteID: 6a65c09665859cc479b5f5198461a792
+      internalID: -25179445
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimiento camello_11
+      name: movimiento camello 1_11
       rect:
         serializedVersion: 2
-        x: 11505
-        y: 70
-        width: 519
-        height: 500
+        x: 11275
+        y: 0
+        width: 1025
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -354,20 +354,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49c61eb0195a36e4fa6cbc6c84c542ba
-      internalID: 683890286
+      spriteID: 80310a3295a9875468c5343d587eae08
+      internalID: 479165754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimiento camello_12
+      name: movimiento camello 1_12
       rect:
         serializedVersion: 2
-        x: 12535
-        y: 70
-        width: 512
-        height: 500
+        x: 12300
+        y: 0
+        width: 1025
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -376,20 +376,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57652e2a0c6d7264da2e7fde7ccf66a4
-      internalID: -1356561577
+      spriteID: b6263701a36e80c48ac85c07870d62aa
+      internalID: -1610360483
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movimiento camello_13
+      name: movimiento camello 1_13
       rect:
         serializedVersion: 2
-        x: 13558
-        y: 63
-        width: 512
-        height: 507
+        x: 13325
+        y: 0
+        width: 1025
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -398,8 +398,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 800b38359ed98424988d1a89fd5fde0e
-      internalID: -1494048661
+      spriteID: 60718ca141549fa48a4d8f1049fd4254
+      internalID: -1808885146
       vertices: []
       indices: 
       edges: []
@@ -408,7 +408,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e2fe9aa8069a9634596be11e552e4b7a
+    spriteID: b3ef65709406fef4c90006d185410853
     internalID: 0
     vertices: []
     indices: 
@@ -418,20 +418,20 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      movimiento camello_0: 551113608
-      movimiento camello_1: -1961677515
-      movimiento camello_10: -1718913870
-      movimiento camello_11: 683890286
-      movimiento camello_12: -1356561577
-      movimiento camello_13: -1494048661
-      movimiento camello_2: 385630730
-      movimiento camello_3: -2030051588
-      movimiento camello_4: -1212558332
-      movimiento camello_5: -1130388711
-      movimiento camello_6: -19073889
-      movimiento camello_7: 1640219517
-      movimiento camello_8: 1358807707
-      movimiento camello_9: 539514025
+      movimiento camello 1_0: -417824770
+      movimiento camello 1_1: -1184702953
+      movimiento camello 1_10: -25179445
+      movimiento camello 1_11: 479165754
+      movimiento camello 1_12: -1610360483
+      movimiento camello 1_13: -1808885146
+      movimiento camello 1_2: 1913118791
+      movimiento camello 1_3: -1728417737
+      movimiento camello 1_4: 1643764174
+      movimiento camello 1_5: 2144807127
+      movimiento camello 1_6: -2021876651
+      movimiento camello 1_7: 569597836
+      movimiento camello 1_8: 419457603
+      movimiento camello 1_9: 508534938
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
