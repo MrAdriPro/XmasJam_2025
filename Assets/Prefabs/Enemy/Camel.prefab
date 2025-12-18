@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8027787848104999598}
   - component: {fileID: 7991204448652424117}
   - component: {fileID: 1082315995447184823}
-  - component: {fileID: 157002456212151636}
   - component: {fileID: 5055831892455339850}
+  - component: {fileID: 445118511742059622}
   m_Layer: 6
   m_Name: Camel
   m_TagString: Enemy
@@ -54,7 +54,7 @@ MonoBehaviour:
   experienceDrop: 10
   data: {fileID: 11400000, guid: 22d284e27d56b234f8e06502d50028a8, type: 2}
   model: {fileID: 8005117086288774259}
-  globalDropChance: 79.9
+  globalDropChance: 8
   lootTable:
   - itemPrefab: {fileID: 6577716479570455283, guid: aeaa0c936bed4284f9e7da13a43a911b, type: 3}
     weight: 1
@@ -89,29 +89,6 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 22d284e27d56b234f8e06502d50028a8, type: 2}
   jumpForce: 2.8
   jumpDuration: 2
---- !u!136 &157002456212151636
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5237048917811981342}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.45
-  m_Height: 2.38
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.75725853, z: 0.008417964}
 --- !u!54 &5055831892455339850
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -139,6 +116,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!65 &445118511742059622
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5237048917811981342}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.6392717, y: 1.8035712, z: 1.0741189}
+  m_Center: {x: 0.061464787, y: 0.8858435, z: -0.015813231}
 --- !u!1 &8005117086288774259
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +197,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.964, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.69064, y: 0.69064, z: 0.69064}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1555846004509592100}
@@ -248,12 +246,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.6426325, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: 551113608, guid: ac80255c515c1f1418aebdb185c503c1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 5.1495523, y: 3.485}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

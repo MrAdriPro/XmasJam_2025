@@ -1,18 +1,18 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class LittleBoyShooter : MonoBehaviour
 {
     [SerializeField] private EnemyController enemyController;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private EnemyStats enemyStats;
-
-    public float attackRate = 2f;
+    private Animator animator;
 
     private float timer;
+    private float attackRate;
 
     private void Awake()
     {
+        animator = GetComponentInChildren<Animator>();
         attackRate = enemyStats.attackRate;
     }
 
@@ -22,35 +22,31 @@ public class LittleBoyShooter : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            if (timer > attackRate) 
+            if (timer >= attackRate) 
             {
-                Shoot();
+                animator.SetTrigger("isAttacking");
+                timer = 0f; 
             }
         }
-        else if(enemyController.actionActive == false)
+        else 
         {
             timer = 0f;
-            print("Shootn't");
         }   
     }
 
-    private void Shoot() 
+    public void ExecuteShoot() 
     {
-        print("Shoot!");
+        if (enemyController.playerCol.Length == 0) return;
 
         Transform targetPoint = enemyController.playerCol[0].transform;
-
-        //Vector3 dir = targetpoint.position - transform.position;
-
-        //Quaternion quaternion = Quaternion.Euler(dir.x, dir.y, dir.z);
-
+        
         var lookPos = targetPoint.position - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
 
-
-        Instantiate(projectilePrefab, transform.position + new Vector3(0f,0.2f,0f) , rotation);
-
-        timer = 0f;
+        Instantiate(projectilePrefab, transform.position + new Vector3(0f, 0.2f, 0f), rotation);
+        
+        
     }
 }
+
