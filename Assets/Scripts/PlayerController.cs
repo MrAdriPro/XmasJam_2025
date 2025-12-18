@@ -379,6 +379,7 @@ public class PlayerController : MonoBehaviour
             isDead = true;
             playerCollider.enabled = false;
             animator.SetTrigger("isDead");
+            Destroy(rb);
             animator.SetBool("dead", true);
         }
     }

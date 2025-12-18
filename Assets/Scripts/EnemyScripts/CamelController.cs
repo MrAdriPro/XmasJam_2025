@@ -12,12 +12,13 @@ public class CamelController : MonoBehaviour
     private float jumpDur = 0f;
 
     private float attackCD;
-
+    private Rigidbody rb;
     private bool isjumping;
 
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         attackCD = data.attackRate;
         jumpDur = jumpDuration;
     }
@@ -75,7 +76,7 @@ public class CamelController : MonoBehaviour
                 transform.position = Vector3.Lerp(transform.position, target.position + (targetDir * jumpForce), jumpDur);
             }
 
-            GetComponent<Rigidbody>().AddForce(targetDir * jumpForce, ForceMode.Impulse);
+            rb.AddForce(targetDir * jumpForce, ForceMode.Impulse);
 
 
             isjumping = true;
