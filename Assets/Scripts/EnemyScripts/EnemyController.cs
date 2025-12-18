@@ -164,7 +164,7 @@ public class EnemyController : MonoBehaviour
         if (currentHealth <= 0) Die();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player") && !isDead) Attack();
     }
@@ -173,7 +173,8 @@ public class EnemyController : MonoBehaviour
     {
         if (isDead) return;
         isDead = true;
-
+        
+        
         LevelManager.Instance.AddExperience(experienceDrop);
 
         DropLoot();
