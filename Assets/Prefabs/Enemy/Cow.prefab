@@ -53,7 +53,7 @@ MonoBehaviour:
   experienceDrop: 10
   data: {fileID: 11400000, guid: d66658a5d700e7e449391c9008661add, type: 2}
   model: {fileID: 8005117086288774259}
-  globalDropChance: 79.9
+  globalDropChance: 30
   lootTable:
   - itemPrefab: {fileID: 6577716479570455283, guid: aeaa0c936bed4284f9e7da13a43a911b, type: 3}
     weight: 1
@@ -65,6 +65,8 @@ MonoBehaviour:
     weight: 1
   - itemPrefab: {fileID: 6577716479570455283, guid: c8924d133a311cc4c85f132318fc0a04, type: 3}
     weight: 1
+  - itemPrefab: {fileID: 7295263442720147888, guid: b56a68bf5a2f213419379c6c04b87509, type: 3}
+    weight: 2
   explotion: {fileID: 8786811043250572203, guid: 5f768c11688aee44bafab3a8d148c1b0, type: 3}
   overlapRadius: 0
   playerMask:
@@ -73,6 +75,7 @@ MonoBehaviour:
   playerCol: []
   actionActive: 0
   isDead: 0
+  fontainTookDamage: 0
 --- !u!54 &5055831892455339850
 Rigidbody:
   m_ObjectHideFlags: 0

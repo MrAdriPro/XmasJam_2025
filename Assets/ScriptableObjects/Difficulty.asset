@@ -38,11 +38,11 @@ MonoBehaviour:
     spawnPerWave: 1
     enemyChances:
     - type: 0
-      weight: 20
+      weight: 70
     - type: 1
       weight: 20
     - type: 2
-      weight: 60
+      weight: 10
     continuous: 0
   - type: 3
     activeSpawnPoints: 4
@@ -50,13 +50,13 @@ MonoBehaviour:
     spawnPerWave: 1
     enemyChances:
     - type: 0
-      weight: 10
+      weight: 60
     - type: 1
       weight: 20
     - type: 2
-      weight: 40
+      weight: 10
     - type: 3
-      weight: 30
+      weight: 10
     continuous: 0
   - type: 4
     activeSpawnPoints: 5
@@ -64,13 +64,13 @@ MonoBehaviour:
     spawnPerWave: 1
     enemyChances:
     - type: 0
-      weight: 10
+      weight: 50
     - type: 1
       weight: 20
     - type: 2
-      weight: 30
+      weight: 15
     - type: 3
-      weight: 40
+      weight: 15
     continuous: 0
   - type: 5
     activeSpawnPoints: 5
@@ -78,7 +78,7 @@ MonoBehaviour:
     spawnPerWave: 1
     enemyChances:
     - type: 0
-      weight: 10
+      weight: 30
     - type: 1
       weight: 30
     - type: 2
