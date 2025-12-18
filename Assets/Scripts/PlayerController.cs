@@ -282,8 +282,9 @@ public class PlayerController : MonoBehaviour
 
         if (modelLookLeft == cursorLookLeft) 
         {
-
+            animator.SetBool("reversed", true);
         }
+        else animator.SetBool("reversed", false);
     }
 
     private GameObject GetActiveProjectilePrefab()
