@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
     public float criticalChance = 1f;
 
     [Header("StatLimits")]
-
     public float asLimit = 0.1f;
     public float speedLimit = 18f;
 
