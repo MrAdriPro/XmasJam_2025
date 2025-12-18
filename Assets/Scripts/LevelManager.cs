@@ -4,6 +4,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
     [SerializeField] private GameObject[] buttons;
+    [SerializeField] private GameObject[] maxxedButtons;
     [SerializeField] private Transform[] buttonsPos;
     [SerializeField] private GameObject levelUpPanel;
 
@@ -58,19 +59,22 @@ public class LevelManager : MonoBehaviour
     {
         // Elige botón random
         RandomizeCard();
-        
+
+        // Desactiva los que hayas llegado al cap de la stat
+        OffButtons();
+
         // Los pone en las posiciones correspondientes
         buttons[buttonNum1].transform.position = buttonsPos[0].position;
         buttons[buttonNum2].transform.position = buttonsPos[1].position;
         buttons[buttonNum3].transform.position = buttonsPos[2].position;
+
         
+
         // Los Activa
         buttons[buttonNum1].SetActive(true);
         buttons[buttonNum2].SetActive(true);
         buttons[buttonNum3].SetActive(true);
         
-        // Desactiva los que hayas llegado al cap de la stat
-        OffButtons();
         
         AltPanel(true);
     }
@@ -125,7 +129,7 @@ public class LevelManager : MonoBehaviour
         {
             if (buttonsOff[i] == true)
             {
-                buttons[i].SetActive(false);
+                buttons[i] = maxxedButtons[i];
             }
         }
     }

@@ -49,9 +49,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("StatLimits")]
 
-    public float asLimit = 0f;
+    public float asLimit = 0.1f;
+    public float speedLimit = 18f;
 
-    
+
+
     [Header("Knockback")]
     public float knockbackForce = 6f;
     public float knockbackDuration = 0.25f;
@@ -116,6 +118,7 @@ public class PlayerController : MonoBehaviour
         HandleShooting();
         HandleMele();
         FlipOrientation();
+        LimitStats();
     }
 
     private void Inmunerable()
@@ -394,6 +397,13 @@ public class PlayerController : MonoBehaviour
         if(multiplyFireRateBy < asLimit)
         {
             multiplyFireRateBy = asLimit;
+            LevelManager.Instance.buttonsOff[2] = true;
+        }
+
+        if (playerMoveSpeed > speedLimit)
+        {
+            playerMoveSpeed = speedLimit;
+            LevelManager.Instance.buttonsOff[3] = true;
         }
     }
 }
