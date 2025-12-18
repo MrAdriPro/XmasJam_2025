@@ -800,6 +800,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e90eed4b16f1b4fb343283c6a6940c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttons: []
+  buttonsPos: []
+  levelUpPanel: {fileID: 0}
+  buttonsOff: 0000000000
   currentLevel: 1
   currentXP: 0
 --- !u!4 &1862812203
@@ -1140,6 +1144,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 344afa639b52fce4883e2f366b4bbcd8, type: 2}
     - target: {fileID: 1975852294842601554, guid: 8fdd94d15829cf14fbcc00803e95a836, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 8297240254175992398}
+    - target: {fileID: 1975852294842601554, guid: 8fdd94d15829cf14fbcc00803e95a836, type: 3}
       propertyPath: playerStats
       value: 
       objectReference: {fileID: 11400000, guid: 344afa639b52fce4883e2f366b4bbcd8, type: 2}
@@ -1217,6 +1225,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8297240254175992400}
+--- !u!95 &8297240254175992398 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5683038893423210771, guid: 8fdd94d15829cf14fbcc00803e95a836, type: 3}
+  m_PrefabInstance: {fileID: 8297240254175992395}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8297240254175992400 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1975852294842601554, guid: 8fdd94d15829cf14fbcc00803e95a836, type: 3}
