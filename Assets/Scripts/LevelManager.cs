@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform[] buttonsPos;
     [SerializeField] private GameObject levelUpPanel;
     public bool levelUp;
+    public Slider xpSlider;
+    public TextMeshProUGUI textXP;
 
     public bool[] buttonsOff = new bool[5];
 
@@ -18,6 +22,9 @@ public class LevelManager : MonoBehaviour
     private int buttonNum1;
     private int buttonNum2;
     private int buttonNum3;
+
+    [SerializeField] private float lerpSpeed = 5f;
+    private float targetXP;
 
 
     void Awake()
@@ -30,6 +37,17 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    private void Start()
+    {
+        targetXP = currentXP;
+        UpdateUI(true);
+    }
+    private void Update()
+    {
+        targetXP = Mathf.Lerp(targetXP, currentXP, Time.deltaTime * lerpSpeed);
+        xpSlider.value = targetXP;
+        textXP.text = currentXP + " / " + xpToNextLevel + " XP";
     }
 
     public void AddExperience(int amount)
@@ -48,13 +66,22 @@ public class LevelManager : MonoBehaviour
         levelUp = true;
         currentLevel++;
         currentXP -= xpToNextLevel;
+        targetXP = 0;
         xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.5f);
         print("Leveled up to Level " + currentLevel + "! Next level at " + xpToNextLevel + " XP.");
 
-
+        UpdateUI(true);
         UpgradeScreen();
 
         // UIManager.Instance.ShowLevelUpPanel();
+    }
+    private void UpdateUI(bool instant = false)
+    {
+        xpSlider.maxValue = xpToNextLevel;
+        if (instant)
+        {
+            targetXP = currentXP;
+        }
     }
 
     private void UpgradeScreen()
@@ -120,11 +147,12 @@ public class LevelManager : MonoBehaviour
         {
             foreach (var button in buttons)
             {
-                button.SetActive(false);
+                Time.timeScale = 1;
+                levelUp = false;
+                UpdateUI();
             }
 
-            Time.timeScale = 1;
-            levelUp = false;
+            
         }
     }
 

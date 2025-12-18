@@ -13,6 +13,7 @@ public class DifficultyUI : MonoBehaviour
 	public RectTransform labelsParent;
 	public GameObject labelPrefab;
 
+
 	[Header("Labels (manual)")]
 	[Tooltip("Si añades cadenas aquí, se usarán como etiquetas en el UI en lugar de los nombres del enum.")]
 	public List<string> customLabels = new List<string>();
