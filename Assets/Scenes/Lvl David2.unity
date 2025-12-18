@@ -1647,8 +1647,8 @@ MonoBehaviour:
   - type: 3
     prefab: {fileID: 5237048917811981342, guid: bde62ed3312f8e541a620e6433c97081, type: 3}
   autoIncreaseDifficulty: 1
-  timePerStage: 10
-  initialDelay: 0
+  timePerStage: 60
+  initialDelay: 10
   perEnemyDelay: 0.2
   maxEnemies: 80
   enemyTag: Enemy
@@ -5222,6 +5222,10 @@ PrefabInstance:
     - target: {fileID: 6335207645950434429, guid: 8fdd94d15829cf14fbcc00803e95a836, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6404066829832901044, guid: 8fdd94d15829cf14fbcc00803e95a836, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6404066829832901044, guid: 8fdd94d15829cf14fbcc00803e95a836, type: 3}
       propertyPath: m_Constraints
