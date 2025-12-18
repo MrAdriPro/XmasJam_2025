@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
     private void ApplyMovement()
     {
         if(isDead || Time.timeScale == 0) return;
-        Vector3 displacement = movementInput * playerMoveSpeed * Time.deltaTime;
+        Vector3 displacement = movementInput.normalized * playerMoveSpeed * Time.deltaTime;
 
         if (knockbackTimeRemaining > 0f)
         {
