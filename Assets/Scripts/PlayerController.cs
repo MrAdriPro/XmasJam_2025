@@ -61,7 +61,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("FlipVars")]
     public bool fixedFlip;
-    private bool lookLeft;
+    private bool cursorLookLeft;
+    private bool modelLookLeft;
+
     private bool rotationDisable;
     
     
@@ -123,6 +125,7 @@ public class PlayerController : MonoBehaviour
         HandleMele();
         FlipOrientation();
         LimitStats();
+
     }
 
     private void Inmunerable()
@@ -208,11 +211,14 @@ public class PlayerController : MonoBehaviour
             // Eliges si el cursor está en la izquierda o derecha
             if(point.x < transform.position.x)
             {
-                lookLeft = true;
+                cursorLookLeft = true;
             }
-            else lookLeft = false;
+            else cursorLookLeft = false;
 
-            print("lookLeft = " + lookLeft);
+            animator.SetBool("aimLeft", true);
+
+
+            print("lookLeft = " + cursorLookLeft);
         }
     }
 
@@ -260,29 +266,23 @@ public class PlayerController : MonoBehaviour
     private void FlipOrientation()
     {
         if(isDead) return;
-        if (rotationDisable) return;
+      
 
-        if (fixedFlip == false)
+       
+        if (movementInput.x < 0)
         {
-            if (movementInput.x < 0)
-            {
-                body.transform.localScale = new Vector3(-1f, 1f, 1f);
-            }
-            else if (movementInput.x > 0)
-            {
-                body.transform.localScale = new Vector3(1f, 1f, 1f);
-            }
+            body.transform.localScale = new Vector3(-1f, 1f, 1f);
+            modelLookLeft = true;
         }
-        else 
+        else if (movementInput.x > 0)
         {
-            if (lookLeft == true)
-            {
-                body.transform.localScale = new Vector3(-1f, 1f, 1f);
-            }
-            else if (lookLeft == false)
-            {
-                body.transform.localScale = new Vector3(1f, 1f, 1f);
-            }
+            body.transform.localScale = new Vector3(1f, 1f, 1f);
+            modelLookLeft = false;
+        }
+
+        if (modelLookLeft == cursorLookLeft) 
+        {
+
         }
     }
 
