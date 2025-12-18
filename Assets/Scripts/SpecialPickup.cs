@@ -10,7 +10,6 @@ public class SpecialPickup : MonoBehaviour
     public int ammoAmount = 5;
 
     public float multiplyFireRateBy = 1f;
-    public float multiplyMeleeRateBy = 1f;
 
     void OnTriggerEnter(Collider other)
     {
@@ -18,7 +17,7 @@ public class SpecialPickup : MonoBehaviour
         {
             PlayerController player = other.GetComponent<PlayerController>();
 
-            player.PickupSpecialAmmo(specialIndex, ammoAmount, multiplyFireRateBy,multiplyMeleeRateBy);
+            player.PickupSpecialAmmo(specialIndex, ammoAmount, multiplyFireRateBy);
             Destroy(gameObject);
         }
 

@@ -10,13 +10,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject melePivot;
     [SerializeField] private Transform melePoint;
     [SerializeField] private Inventory inventoryScript;
-    [SerializeField] private Animator animator;
+    public Animator animator;
     private Collider playerCollider;
     private bool isDead = false;
 
     [Header("MovementConfiguration")]
     public float inputDeadZone = 0.1f;
-    private Vector3 movementInput;
+    [HideInInspector]public Vector3 movementInput;
 
     [Header("Combat Configuration")]
     public Transform shootingPivot;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public float inmuneDuration = 2f;
     [Tooltip("Especial Ammo")]
     public int[] especialAmmo;
-    private int currentSpecialIndex = 0; 
+    public int currentSpecialIndex = 0; 
     private float nextFireTime;
     private float nextMeleTime;
     
@@ -304,7 +304,7 @@ public class PlayerController : MonoBehaviour
     }
 
   
-    public void PickupSpecialAmmo(int index, int ammoAmount, float fireRate, float meleeRate)
+    public void PickupSpecialAmmo(int index, int ammoAmount, float fireRate)
     {
         if (especialProjectiles == null || index < 0 || index >= especialProjectiles.Length)
         {
