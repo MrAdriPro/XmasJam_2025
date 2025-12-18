@@ -5,7 +5,7 @@ public class MissionObject : MonoBehaviour
     [Tooltip("Identificador simple del item (ej: \"baby\", \"toy\").")]
     public string itemId;
 
-    [Tooltip("Prefab que representa el objeto asociado (se guardará como referencia en el jugador).")]
+    [Tooltip("Prefab que representa el objeto asociado (se guardarï¿½ como referencia en el jugador).")]
     public GameObject missionPrefab;
 
     public bool collectable = true;
