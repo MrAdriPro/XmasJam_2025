@@ -189,7 +189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4915086785492860565
 Transform:
   m_ObjectHideFlags: 0
@@ -244,6 +244,7 @@ MonoBehaviour:
   playerCol: []
   actionActive: 0
   isDead: 0
+  fontainTookDamage: 0
 --- !u!54 &3638787968946512701
 Rigidbody:
   m_ObjectHideFlags: 0

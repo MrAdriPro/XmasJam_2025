@@ -74,6 +74,7 @@ MonoBehaviour:
   playerCol: []
   actionActive: 0
   isDead: 0
+  fontainTookDamage: 0
 --- !u!114 &1082315995447184823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +91,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 22d284e27d56b234f8e06502d50028a8, type: 2}
   jumpForce: 2.8
   jumpDuration: 2
+  isjumping: 0
 --- !u!54 &5055831892455339850
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -98,7 +100,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5237048917811981342}
   serializedVersion: 4
-  m_Mass: 50
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -181,6 +183,7 @@ GameObject:
   - component: {fileID: 6281277215101002995}
   - component: {fileID: 6689202017908997137}
   - component: {fileID: 6188704998354328765}
+  - component: {fileID: 7434457830080686152}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -247,7 +250,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 551113608, guid: ac80255c515c1f1418aebdb185c503c1, type: 3}
+  m_Sprite: {fileID: -690060731, guid: 549c490f839f9e243b56b66acbff7d32, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -255,7 +258,7 @@ SpriteRenderer:
   m_Size: {x: 5.1495523, y: 3.485}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &6188704998354328765
@@ -270,3 +273,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da26ea716a190054d8c23977cc03ec0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &7434457830080686152
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672296587711424552}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bbc7022998c2bb14fbe80f6f2f7a5738, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
