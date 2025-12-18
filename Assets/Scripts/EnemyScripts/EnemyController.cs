@@ -132,7 +132,7 @@ public class EnemyController : MonoBehaviour
             s.x = Mathf.Abs(initialLocalScale.x) * -sign;
             model.transform.localScale = s;
         }
-        if (data.enemyType == EnemyType.LittleBoy && model != null)
+        if (data.enemyType == EnemyType.LittleBoy || data.enemyType == EnemyType.Camel && model != null)
         {
             Vector3 s = initialLocalScale;
             s.x = Mathf.Abs(initialLocalScale.x) * sign;
@@ -189,7 +189,7 @@ public class EnemyController : MonoBehaviour
                 animator.SetTrigger("dead");
             Destroy(gameObject,0.6f);
         }
-        else if (data.enemyType == EnemyType.Sheep || data.enemyType == EnemyType.LittleBoy)
+        else if (data.enemyType == EnemyType.Sheep || data.enemyType == EnemyType.LittleBoy || data.enemyType == EnemyType.Camel)
         {
             if (animator != null) animator.SetTrigger("isDead");
             Destroy(gameObject, 1f);

@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject[] maxxedButtons;
     [SerializeField] private Transform[] buttonsPos;
     [SerializeField] private GameObject levelUpPanel;
+    public bool levelUp;
 
     public bool[] buttonsOff = new bool[5];
 
@@ -44,6 +45,7 @@ public class LevelManager : MonoBehaviour
 
     private void LevelUp()
     {
+        levelUp = true;
         currentLevel++;
         currentXP -= xpToNextLevel;
         xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * 1.5f);
@@ -77,8 +79,9 @@ public class LevelManager : MonoBehaviour
         
         
         AltPanel(true);
+
     }
-    
+
     private void RandomizeCard()
     {
         // Elige botón random
@@ -110,6 +113,7 @@ public class LevelManager : MonoBehaviour
 
         if(activate)
         {
+            print("activado");
             Time.timeScale = 0;
         }
         else
@@ -120,6 +124,7 @@ public class LevelManager : MonoBehaviour
             }
 
             Time.timeScale = 1;
+            levelUp = false;
         }
     }
 
