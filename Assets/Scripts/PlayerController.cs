@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        rb.linearVelocity = displacement;
+        rb.MovePosition(transform.position + displacement);
     }
 
     private void HandleAiming()
