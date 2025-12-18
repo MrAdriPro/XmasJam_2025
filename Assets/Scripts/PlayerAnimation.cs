@@ -16,4 +16,14 @@ public class PlayerAnimation : MonoBehaviour
             //playerController.Shoot();
         }
     }
+
+    public void AnimationEvent_FixatedTrue()
+    {
+        playerController.altFixedFlip(true);
+    }
+
+    public void AnimationEvent_FixatedFalse()
+    {
+        playerController.altFixedFlip(false);
+    }
 }
