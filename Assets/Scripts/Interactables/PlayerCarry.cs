@@ -4,9 +4,19 @@ public class PlayerCarry : MonoBehaviour
 {
     public string carriedItemId;    
     public GameObject carriedPrefab;
-
+    
+    [Header("WoodVars")]
+    public int carriedWood;
+    public int maxWood;
+    private bool completedWood = false;
+    
     public bool HasItem => !string.IsNullOrEmpty(carriedItemId) && carriedPrefab != null;
 
+    void Update()
+    {
+        LimitWood();
+    }
+    
     public bool PickUp(string id, GameObject prefab)
     {
         if (HasItem)
@@ -26,5 +36,14 @@ public class PlayerCarry : MonoBehaviour
         carriedItemId = null;
         carriedPrefab = null;
         Debug.Log("PlayerCarry: objeto soltado/consumido");
+    }
+
+    void LimitWood()
+    {
+        if (carriedWood > maxWood)
+        {
+            carriedWood = maxWood;
+            completedWood = false;
+        }
     }
 }
