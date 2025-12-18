@@ -292,8 +292,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        Instantiate(prefabToSpawn, shootingPivot.position, shootingPivot.rotation);
-    }
+        GameObject bullet = Instantiate(prefabToSpawn, shootingPivot.position, shootingPivot.rotation);
+    }
 
   
     public void PickupSpecialAmmo(int index, int ammoAmount, float fireRate, float meleeRate)
@@ -339,8 +339,11 @@ public class PlayerController : MonoBehaviour
         {
             isDead = true;
             animator.SetTrigger("isDead");
+            animator.SetBool("dead", true);
+            playerCollider.enabled = false;
 
-        }
+            print("Player Dead");
+        }
     }
 
     public void RefreshStats()
