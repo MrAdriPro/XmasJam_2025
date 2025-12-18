@@ -73,6 +73,7 @@ MonoBehaviour:
     m_Bits: 8
   playerCol: []
   actionActive: 0
+  isDead: 0
 --- !u!114 &1082315995447184823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,7 +98,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5237048917811981342}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -254,7 +255,7 @@ SpriteRenderer:
   m_Size: {x: 5.1495523, y: 3.485}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &6188704998354328765

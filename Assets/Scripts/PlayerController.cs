@@ -10,13 +10,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject melePivot;
     [SerializeField] private Transform melePoint;
     [SerializeField] private Inventory inventoryScript;
-    public Animator animator;
+    [SerializeField] private Animator animator;
     private Collider playerCollider;
     private bool isDead = false;
+    [SerializeField] private Rigidbody rb;
 
     [Header("MovementConfiguration")]
     public float inputDeadZone = 0.1f;
-    public Vector3 movementInput;
+    private Vector3 movementInput;
 
     [Header("Combat Configuration")]
     public Transform shootingPivot;
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public float inmuneDuration = 2f;
     [Tooltip("Especial Ammo")]
     public int[] especialAmmo;
-    public int currentSpecialIndex = 0; 
+    private int currentSpecialIndex = 0; 
     private float nextFireTime;
     private float nextMeleTime;
     
@@ -128,7 +129,6 @@ public class PlayerController : MonoBehaviour
     {
         CancelInvoke(nameof(ResetInmune));
         inmune = true;
-        animator.SetTrigger("hit");
         Invoke(nameof(ResetInmune), inmuneDuration);
     }
 
@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        transform.position += displacement;
+        rb.linearVelocity = displacement;
     }
 
     private void HandleAiming()
@@ -230,26 +230,13 @@ public class PlayerController : MonoBehaviour
                 Shoot();
             }
         }
-        if(currentSpecialIndex == 2)
-        {
-            print("Sniper equiped");
-            if (Input.GetButtonDown("Fire1"))
-            {
-                print("Disparando sniper");
-                animator.SetTrigger("shoot");
-
-            }
-        }
-        else if (Input.GetButtonDown("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
+        if (Input.GetButton("Fire1") && Time.time > nextFireTime && Time.time > nextMeleTime)
         {
             nextFireTime = Time.time + 1f / bulletFireRate * multiplyFireRateBy;
             Shoot();
         }
     }
-    public void ShootAnimationEvent()
-    {
-        Shoot();
-    }
+
     private void HandleMele()
     {
         if (Input.GetButton("Fire2") && Time.time > nextMeleTime && Time.time > nextFireTime)
@@ -347,7 +334,7 @@ public class PlayerController : MonoBehaviour
     }
 
   
-    public void PickupSpecialAmmo(int index, int ammoAmount, float fireRate)
+    public void PickupSpecialAmmo(int index, int ammoAmount, float fireRate, float meleeRate)
     {
         if (especialProjectiles == null || index < 0 || index >= especialProjectiles.Length)
         {

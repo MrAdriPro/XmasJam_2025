@@ -31,7 +31,7 @@ public class EnemyController : MonoBehaviour
     public bool actionActive = false;
 
     private Animator animator;
-    private bool isDead = false;
+    public bool isDead = false;
     private Collider enemyCollider;
     private Rigidbody _rb;
     private Transform playerTransform;
@@ -158,7 +158,7 @@ public class EnemyController : MonoBehaviour
         if (currentHealth <= 0) Die();
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player") && !isDead) Attack();
     }
@@ -187,7 +187,7 @@ public class EnemyController : MonoBehaviour
             if (animator != null) animator.SetTrigger("isDead");
             Destroy(gameObject, 1f);
         }
-        else
+        else if(data.enemyType != EnemyType.Fontain)
         {
             Destroy(gameObject);
         }
@@ -225,6 +225,7 @@ public class EnemyController : MonoBehaviour
 
     private void Attack()
     {
+        if(data.enemyType == EnemyType.Fontain) return;
         if (player != null) player.TakeDamage(data.damage, transform.position);
     }
 }
