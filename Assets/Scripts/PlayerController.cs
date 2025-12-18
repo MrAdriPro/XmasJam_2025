@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator animator;
     private Collider playerCollider;
     private bool isDead = false;
+    [SerializeField] private Rigidbody rb;
 
     [Header("MovementConfiguration")]
     public float inputDeadZone = 0.1f;
@@ -186,7 +187,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        transform.position += displacement;
+        rb.linearVelocity = displacement;
     }
 
     private void HandleAiming()
