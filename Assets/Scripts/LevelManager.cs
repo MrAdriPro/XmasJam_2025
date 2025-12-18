@@ -147,6 +147,7 @@ public class LevelManager : MonoBehaviour
         {
             foreach (var button in buttons)
             {
+                button.SetActive(false);
                 Time.timeScale = 1;
                 levelUp = false;
                 UpdateUI();
