@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("MovementConfiguration")]
     public float inputDeadZone = 0.1f;
-    public Vector3 movementInput;
+    private Vector3 movementInput;
 
     [Header("Combat Configuration")]
     public Transform shootingPivot;
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(isDead ) return;
+        if(isDead) return;
         HandleMovementInput();
         ApplyMovement();
         HandleAiming();
