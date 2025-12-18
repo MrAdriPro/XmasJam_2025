@@ -3870,15 +3870,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1916781550132585730, guid: 8c196122d8aa3ba43b4d8b6372e29435, type: 3}
       propertyPath: 'buttonsOff.Array.data[0]'
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1916781550132585730, guid: 8c196122d8aa3ba43b4d8b6372e29435, type: 3}
       propertyPath: 'buttonsOff.Array.data[1]'
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1916781550132585730, guid: 8c196122d8aa3ba43b4d8b6372e29435, type: 3}
       propertyPath: 'buttonsOff.Array.data[2]'
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1916781550132585730, guid: 8c196122d8aa3ba43b4d8b6372e29435, type: 3}
       propertyPath: 'buttonsPos.Array.data[0]'
