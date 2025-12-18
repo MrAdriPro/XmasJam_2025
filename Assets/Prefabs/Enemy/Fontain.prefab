@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8027787848104999598}
   - component: {fileID: 7991204448652424117}
   - component: {fileID: 6926095629886247698}
-  - component: {fileID: 5055831892455339850}
   - component: {fileID: 612846172357302114}
   m_Layer: 6
   m_Name: Fontain
@@ -89,33 +88,7 @@ MonoBehaviour:
   fontain: {fileID: 7991204448652424117}
   model: {fileID: 507882010981328761}
   brokenModel: {fileID: 3759919324903836884}
---- !u!54 &5055831892455339850
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5237048917811981342}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
+  reward: {fileID: 0}
 --- !u!135 &612846172357302114
 SphereCollider:
   m_ObjectHideFlags: 0

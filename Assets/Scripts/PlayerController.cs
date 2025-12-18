@@ -377,10 +377,10 @@ public class PlayerController : MonoBehaviour
         if (currentHealth <= 0)
         {
             isDead = true;
-            playerCollider.enabled = false;
             animator.SetTrigger("isDead");
-            Destroy(rb);
             animator.SetBool("dead", true);
+            playerCollider.enabled = false;
+            Destroy(rb);
         }
     }
 
