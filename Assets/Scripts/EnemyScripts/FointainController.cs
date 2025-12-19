@@ -8,7 +8,8 @@ public class FointainController : MonoBehaviour
     [SerializeField] private GameObject model;
     [SerializeField] private GameObject brokenModel;
     [SerializeField] private GameObject reward;
-
+    [SerializeField] private AudioManager audioManager;
+    
     public Color damageColor;
     public Color baseColor;
     public Material modelMat;
@@ -26,11 +27,17 @@ public class FointainController : MonoBehaviour
             model.SetActive(false);
             brokenModel.SetActive(true);
             reward.SetActive(true);
+            
+            audioManager.PlaySong(1);
+            
+            fontain.isDead = false;
         }
 
         if (fontain.fontainTookDamage) 
         {
             modelMat.SetColor("_BaseColor", damageColor);
+            audioManager.PlaySong(0);
+
             print("changeColor");
 
             StartCoroutine(DelayColor());

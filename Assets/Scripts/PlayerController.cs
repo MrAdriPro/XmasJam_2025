@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool isDead = false;
     public PAUSE pauseScript;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private AudioManager audioManager;
 
     [Header("MovementConfiguration")]
     public float inputDeadZone = 0.1f;
@@ -263,6 +264,7 @@ public class PlayerController : MonoBehaviour
 
     private void Mele() 
     {
+        audioManager.PlaySong(3);
         Instantiate(playerMelee, melePoint.position, Quaternion.identity);
     }
 
@@ -334,7 +336,8 @@ public class PlayerController : MonoBehaviour
                 //bulletFireRate = originalFireRate;
             }
         }
-
+        
+        audioManager.PlaySong(0);
         Instantiate(prefabToSpawn, shootingPivot.position, shootingPivot.rotation);
     }
 
@@ -363,6 +366,7 @@ public class PlayerController : MonoBehaviour
             return;
 
         currentHealth -= amount;
+        audioManager.PlaySong(2);
         healthUI.UpdateHearts(currentHealth);
         Inmunerable();
 
@@ -385,6 +389,7 @@ public class PlayerController : MonoBehaviour
             isDead = true;
             animator.SetTrigger("isDead");
             animator.SetBool("dead", true);
+            audioManager.PlaySong(4);
             playerCollider.enabled = false;
             Destroy(rb);
             pauseScript.PlayerLose();

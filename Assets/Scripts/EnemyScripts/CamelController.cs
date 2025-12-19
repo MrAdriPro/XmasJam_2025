@@ -6,6 +6,7 @@ public class CamelController : MonoBehaviour
 {
     [SerializeField] EnemyController enemyController;
     [SerializeField] EnemyStats data;
+    [SerializeField] AudioManager audioManager;
     private Animator animator;
 
     public float jumpForce;
@@ -82,6 +83,7 @@ public class CamelController : MonoBehaviour
 
             rb.AddForce(targetDir * jumpForce, ForceMode.Impulse);
 
+            audioManager.PlaySong(0);
             animator.SetTrigger("Jump");
             isjumping = true;
         }
