@@ -3,6 +3,7 @@ using UnityEngine;
 public class ExplotionController : MonoBehaviour
 {
     private PlayerController data;
+    [SerializeField] AudioManager audioManager;
     public float duration = 0.5f;
     private float damage = 4;
     public float radius = 1.75f;
@@ -32,12 +33,17 @@ public class ExplotionController : MonoBehaviour
         targetMask = LayerMask.GetMask("Player") | LayerMask.GetMask("Enemy");
     }
 
+    void Start()
+    {
+        audioManager.PlaySong(0);
+    }
+
     // Update is called once per frame
     void Update()
     {
         // Explotion Duration
         duration -= Time.deltaTime;
-
+        
         if (duration <= 0)
         {
             Destroy(this.gameObject);
