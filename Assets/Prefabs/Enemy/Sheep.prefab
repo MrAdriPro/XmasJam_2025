@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8027787848104999598}
   - component: {fileID: 7991204448652424117}
+  - component: {fileID: -374196180672757337}
   - component: {fileID: 5055831892455339850}
   - component: {fileID: 1381943699860863096}
   m_Layer: 6
@@ -76,6 +77,22 @@ MonoBehaviour:
   actionActive: 0
   isDead: 0
   fontainTookDamage: 0
+--- !u!114 &-374196180672757337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5237048917811981342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f568b7e9568df4f85a7676adeeb99f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicManager: 0
+  audioSource: {fileID: 0}
+  audioClips: []
+  songToPlay: 0
 --- !u!54 &5055831892455339850
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ public class LittleBoyShooter : MonoBehaviour
     [SerializeField] private EnemyController enemyController;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private EnemyStats enemyStats;
+    [SerializeField] AudioManager audioManager;
+
     private Animator animator;
 
     private float timer;
@@ -43,7 +45,8 @@ public class LittleBoyShooter : MonoBehaviour
         var lookPos = targetPoint.position - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
-
+        
+        audioManager.PlaySong(0);
         Instantiate(projectilePrefab, transform.position + new Vector3(0f, 0.2f, 0f), rotation);
         
         
