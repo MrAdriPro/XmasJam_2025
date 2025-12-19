@@ -35,7 +35,11 @@ public class ExplotionController : MonoBehaviour
 
     void Start()
     {
-        audioManager.PlaySong(0);
+        if(audioManager != null)
+        {
+            audioManager.PlaySong(0);
+
+        }
     }
 
     // Update is called once per frame

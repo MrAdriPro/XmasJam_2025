@@ -244,7 +244,7 @@ public class MenuController : MonoBehaviour {
     public void newGame()
     {
         //Loads the first scene, change the number to your desired scene
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Story");
     }
 
     //Continue
