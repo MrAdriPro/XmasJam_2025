@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public HealthUIController healthUI;
     private Collider playerCollider;
     private bool isDead = false;
+    public PAUSE pauseScript;
     [SerializeField] private Rigidbody rb;
 
     [Header("MovementConfiguration")]
@@ -380,11 +381,13 @@ public class PlayerController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+
             isDead = true;
             animator.SetTrigger("isDead");
             animator.SetBool("dead", true);
             playerCollider.enabled = false;
             Destroy(rb);
+            pauseScript.PlayerLose();
         }
     }
 

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,6 +22,36 @@ public class PAUSE : MonoBehaviour
             else PauseGame();
         }
     }
+    public void PlayerLose()
+    {
+        gameEnded = true;
+        StartCoroutine(FadeInPanel(losePanel));
+    }
+
+    private IEnumerator FadeInPanel(GameObject panel)
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+
+        panel.SetActive(true);
+        CanvasGroup cg = panel.GetComponent<CanvasGroup>();
+
+        float duration = 2.0f; 
+        float currentTime = 0f;
+
+        while (currentTime < duration)
+        {
+            currentTime += Time.unscaledDeltaTime;
+            cg.alpha = Mathf.Lerp(0f, 1f, currentTime / duration);
+            yield return null;
+        }
+
+        cg.alpha = 1f;
+
+        // 2. Ahora pausamos el juego y liberamos el ratón
+        Time.timeScale = 0f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
 
     public void PauseGame()
     {
@@ -38,17 +69,12 @@ public class PAUSE : MonoBehaviour
 
     public void PlayerWin()
     {
+        if (gameEnded) return;
         gameEnded = true;
-        Time.timeScale = 0f;
-        winPanel.SetActive(true);
+        StartCoroutine(FadeInPanel(winPanel));
     }
 
-    public void PlayerLose()
-    {
-        gameEnded = true;
-        Time.timeScale = 0f;
-        losePanel.SetActive(true);
-    }
+    
 
     public void RestartLevel()
     {
