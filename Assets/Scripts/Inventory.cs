@@ -26,6 +26,7 @@ public class Inventory : MonoBehaviour
         if (stat == "health")
         {
             player.currentHealth += amount;
+            player.healthUI.UpdateHearts(player.currentHealth);
         }
     }
 }

@@ -48,10 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 3
-  isSniperShot: 1
-  multiplyDamageBy: 1
+  multiplyDamageBy: 500
   multiplySpeedBy: 2
   isPlayerShot: 1
+  isSniper: 1
   criticalMultiplier: 2
 --- !u!135 &5441097711297573882
 SphereCollider:

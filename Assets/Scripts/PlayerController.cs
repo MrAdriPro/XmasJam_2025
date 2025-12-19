@@ -123,12 +123,16 @@ public class PlayerController : MonoBehaviour
     {
         if(isDead || Time.timeScale == 0) return;
         HandleMovementInput();
-        ApplyMovement();
         HandleAiming();
         HandleShooting();
         HandleMele();
         FlipOrientation();
         LimitStats();
+
+    }
+    private void FixedUpdate()
+    { if(isDead || Time.timeScale == 0) return;
+        ApplyMovement();
 
     }
 
@@ -179,7 +183,7 @@ public class PlayerController : MonoBehaviour
     private void ApplyMovement()
     {
         if(isDead || Time.timeScale == 0) return;
-        Vector3 displacement = movementInput.normalized * playerMoveSpeed * Time.deltaTime;
+        Vector3 displacement = movementInput.normalized * playerMoveSpeed * Time.fixedDeltaTime;
 
         if (knockbackTimeRemaining > 0f)
         {

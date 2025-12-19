@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8027787848104999598
 Transform:
   m_ObjectHideFlags: 0
@@ -70,6 +70,10 @@ MonoBehaviour:
     weight: 1
   - itemPrefab: {fileID: 7295263442720147888, guid: b56a68bf5a2f213419379c6c04b87509, type: 3}
     weight: 2
+  - itemPrefab: {fileID: 0}
+    weight: 1
+  - itemPrefab: {fileID: 0}
+    weight: 1
   explotion: {fileID: 8786811043250572203, guid: 5f768c11688aee44bafab3a8d148c1b0, type: 3}
   overlapRadius: 8
   playerMask:

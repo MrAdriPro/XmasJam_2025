@@ -8,6 +8,7 @@ public class Proyectile : MonoBehaviour
     public float multiplySpeedBy = 1f;
 
     public bool isPlayerShot = true;
+    public bool isSniper = false;
 
     [Header("Criticals")]
     public float criticalMultiplier = 2f;
@@ -31,6 +32,7 @@ public class Proyectile : MonoBehaviour
             EnemyController enemy = collision.GetComponent<EnemyController>();
             if (enemy != null && player != null)
             {
+                float sniperMultiplier = isSniper ? 100f : 1f;
                 float baseDamage = player.bulletDamage * multiplyDamageBy;
 
                 bool isCritical = Random.value < Mathf.Clamp01(player.criticalChance);
@@ -46,8 +48,9 @@ public class Proyectile : MonoBehaviour
                     Debug.Log($"Critical! Damage: {finalDamage}");
                 }
             }
+            if(!isSniper) Destroy(gameObject);
 
-            Destroy(gameObject);
+
         }
         if (isPlayerShot == false && collision.CompareTag("Player"))
         {

@@ -2171,6 +2171,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &661760559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 498155245850848553, guid: a30d96520ef9ef84f8c15c73c778e228, type: 3}
+  m_PrefabInstance: {fileID: 8460392199971079674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &670074367
 GameObject:
   m_ObjectHideFlags: 0
@@ -2849,6 +2854,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cow
       objectReference: {fileID: 0}
+    - target: {fileID: 7991204448652424117, guid: 0b6cace6af1574f41bcfdaf58d17ea34, type: 3}
+      propertyPath: lootTable.Array.data[5].weight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991204448652424117, guid: 0b6cace6af1574f41bcfdaf58d17ea34, type: 3}
+      propertyPath: lootTable.Array.data[6].itemPrefab
+      value: 
+      objectReference: {fileID: 661760559}
+    - target: {fileID: 7991204448652424117, guid: 0b6cace6af1574f41bcfdaf58d17ea34, type: 3}
+      propertyPath: lootTable.Array.data[7].itemPrefab
+      value: 
+      objectReference: {fileID: 1445081971}
     - target: {fileID: 8027787848104999598, guid: 0b6cace6af1574f41bcfdaf58d17ea34, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.9252183
@@ -4759,10 +4776,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camel
       objectReference: {fileID: 0}
-    - target: {fileID: 5237048917811981342, guid: bde62ed3312f8e541a620e6433c97081, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 7991204448652424117, guid: bde62ed3312f8e541a620e6433c97081, type: 3}
+      propertyPath: lootTable.Array.data[5].weight
+      value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7991204448652424117, guid: bde62ed3312f8e541a620e6433c97081, type: 3}
+      propertyPath: lootTable.Array.data[6].itemPrefab
+      value: 
+      objectReference: {fileID: 661760559}
+    - target: {fileID: 7991204448652424117, guid: bde62ed3312f8e541a620e6433c97081, type: 3}
+      propertyPath: lootTable.Array.data[7].itemPrefab
+      value: 
+      objectReference: {fileID: 1445081971}
     - target: {fileID: 8027787848104999598, guid: bde62ed3312f8e541a620e6433c97081, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.0390134
@@ -4963,6 +4988,11 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1908626113936828799, guid: 6a2c9f347379e0c499d07533f2c56880, type: 3}
   m_PrefabInstance: {fileID: 1405250599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1445081971 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9213847818660669966, guid: e7788a5c22bca91458176784b3a75bbf, type: 3}
+  m_PrefabInstance: {fileID: 566602712546978746}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1537995223
 GameObject:
@@ -6386,6 +6416,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1038662403860922736, guid: 12d042dac3c265743814c30ae8f3fbf8, type: 3}
+      propertyPath: lootTable.Array.data[5].weight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038662403860922736, guid: 12d042dac3c265743814c30ae8f3fbf8, type: 3}
+      propertyPath: lootTable.Array.data[6].itemPrefab
+      value: 
+      objectReference: {fileID: 661760559}
+    - target: {fileID: 1038662403860922736, guid: 12d042dac3c265743814c30ae8f3fbf8, type: 3}
+      propertyPath: lootTable.Array.data[7].itemPrefab
+      value: 
+      objectReference: {fileID: 1445081971}
     - target: {fileID: 4915086785492860565, guid: 12d042dac3c265743814c30ae8f3fbf8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.63
@@ -6522,10 +6564,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sheep
       objectReference: {fileID: 0}
-    - target: {fileID: 5237048917811981342, guid: 8d395a010fca6224d9cb0025455d6761, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 7991204448652424117, guid: 8d395a010fca6224d9cb0025455d6761, type: 3}
+      propertyPath: globalDropChance
+      value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7991204448652424117, guid: 8d395a010fca6224d9cb0025455d6761, type: 3}
+      propertyPath: lootTable.Array.data[5].weight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7991204448652424117, guid: 8d395a010fca6224d9cb0025455d6761, type: 3}
+      propertyPath: lootTable.Array.data[6].itemPrefab
+      value: 
+      objectReference: {fileID: 661760559}
+    - target: {fileID: 7991204448652424117, guid: 8d395a010fca6224d9cb0025455d6761, type: 3}
+      propertyPath: lootTable.Array.data[7].itemPrefab
+      value: 
+      objectReference: {fileID: 1445081971}
     - target: {fileID: 8027787848104999598, guid: 8d395a010fca6224d9cb0025455d6761, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.81
@@ -6967,7 +7021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3312172229985862670, guid: 2c35a6367a97ede48a1f205781b52dc9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
