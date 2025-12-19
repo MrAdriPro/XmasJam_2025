@@ -240,7 +240,7 @@ MonoBehaviour:
   - itemPrefab: {fileID: 6577716479570455283, guid: c8924d133a311cc4c85f132318fc0a04, type: 3}
     weight: 1
   - itemPrefab: {fileID: 7295263442720147888, guid: b56a68bf5a2f213419379c6c04b87509, type: 3}
-    weight: 2
+    weight: 6
   - itemPrefab: {fileID: 0}
     weight: 1
   - itemPrefab: {fileID: 0}

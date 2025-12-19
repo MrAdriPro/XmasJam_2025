@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ecea359321e0e4c9b39ff71a165381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: luz
-  missionPrefab: {fileID: 6404995371863410071}
+  itemId: Cuna
+  missionPrefab: {fileID: 1908626113936828799}
   collectable: 1
 --- !u!65 &7913455883914618639
 BoxCollider:
@@ -69,8 +69,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5833931, y: 1.2765213, z: 1.4283538}
-  m_Center: {x: 0.028057098, y: 0.34959394, z: -0.019521475}
+  m_Size: {x: 2.2544403, y: 1.2765213, z: 2.0530245}
+  m_Center: {x: 0.14546299, y: 0.34959394, z: -0.063884616}
 --- !u!54 &4799970923513676864
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -124,9 +124,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6404995371863410071}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.211, y: 3.46, z: 2.7820003}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalScale: {x: 0.92045, y: 0.92045, z: 0.92045}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2784023847334622498}
@@ -175,7 +175,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72b77442817658d41be97a11afe8f384, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

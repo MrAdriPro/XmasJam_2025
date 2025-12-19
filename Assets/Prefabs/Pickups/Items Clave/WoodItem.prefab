@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5371502276236555058}
   - component: {fileID: 830633416305648048}
+  - component: {fileID: 2265315403536630017}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -26,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 6742294407547735630}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalPosition: {x: 0, y: 0.147, z: 0}
+  m_LocalScale: {x: 0.67598784, y: 0.67598784, z: 0.67598784}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6395634948419706537}
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c2c6b849694033a488d1b8ade43496d0, type: 3}
-  m_Color: {r: 0.6509434, g: 0.4032412, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f46f99ecaaaf9204682f50e0203426b3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,6 +88,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2265315403536630017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6742294407547735630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da26ea716a190054d8c23977cc03ec0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7295263442720147888
 GameObject:
   m_ObjectHideFlags: 0
