@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class MissionObject : MonoBehaviour
 {
-    [Tooltip("Identificador simple del item (ej: \"baby\", \"toy\").")]
     public string itemId;
 
     [Tooltip("Prefab que representa el objeto asociado (se guardar� como referencia en el jugador).")]
